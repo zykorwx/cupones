@@ -1,157 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href='{{STATIC_URL}}css/bp/normalize.min.css'>
-<link rel="stylesheet" href='{{STATIC_URL}}css/bp/main.css'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <title>{% block tittle %} {% endblock %}</title>
-<link href='{{STATIC_URL}}css/main.css' rel="stylesheet" type="text/css" />
-<link type="text/css" href='{{STATIC_URL}}css/cupertino/jquery-ui-1.10.1.custom.css' rel="Stylesheet" /> 
- <script type="text/javascript" src='{{STATIC_URL}}js/jquery-1.9.1.min.js'></script>
- <script type="text/javascript" src='{{STATIC_URL}}js/jquery-ui-1.10.1.custom.min.js'></script>
- <script src='{{STATIC_URL}}js/vendor/modernizr-2.6.2.min.js'></script>
- {% block head %} {% endblock %}
+  <!-- Modernizr -->
+  <script src='{{STATIC_URL}}js/libs/modernizr-2.6.2.min.js'></script>
+  <!-- jQuery -->
+  <script type="text/javascript" src='{{STATIC_URL}}js/jquery-1.9.1.min.js'></script>
+  <script type="text/javascript" src='{{STATIC_URL}}js/jquery-ui-1.10.1.custom.min.js'></script>
+  <script type="text/javascript" src='{{STATIC_URL}}js/libs/jquery-1.8.2.min.js'></script>
+  <!-- GroundworkCSS -->
+  <link type="text/css" rel="stylesheet" href='{{STATIC_URL}}css/groundwork.css'>
+  <!--[if IE]>
+  <link type="text/css" rel="stylesheet" href='{{STATIC_URL}}css/groundwork-ie.css'>
+  <![endif]-->
+  <!--[if lt IE 9]>
+  <script type="text/javascript" src='{{STATIC_URL}}js/libs/html5shiv.min.js'></script>
+  <![endif]-->
+  <!--[if IE 7]>
+  <link type="text/css" rel="stylesheet" href='{{STATIC_URL}}css/font-awesome-ie7.min.css'>
+  <![endif]-->
+  <script type="text/javascript">
+    // extend Modernizr to have datauri test
+    (function(){
+      var datauri = new Image();
+      datauri.onerror = function() {
+          Modernizr.addTest('datauri', function () { return false; });
+      };
+      datauri.onload = function() {
+          Modernizr.addTest('datauri', function () { return (datauri.width == 1 && datauri.height == 1); });
+          Modernizr.load({
+            test: Modernizr.datauri,
+            nope: '{{STATIC_URL}}css/no-datauri.css'
+          });
+      };
+      datauri.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+    })();
+    // fallback if SVG unsupported
+    Modernizr.load({
+      test: Modernizr.inlinesvg,
+      nope: [
+        '{{STATIC_URL}}css/no-svg.css'
+      ]
+    });
+    // polyfill for HTML5 placeholders
+    Modernizr.load({
+      test: Modernizr.input.placeholder,
+      nope: [
+        '{{STATIC_URL}}css/placeholder_polyfill.css',
+        '{{STATIC_URL}}js/libs/placeholder_polyfill.jquery.js'
+      ]
+    });
+  </script>
+   {% block head %} {% endblock %}
 </head>
-
 <body>
+  <header class="white band padded">
 
-<!-- Start of header -->
-<div id="header">
+    <div class="container">
+      <div class="row">
+          <a href="#"><img src='{{STATIC_URL}}images/clicktotal.png'/></a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
 
-    <!-- Start of top logo -->
-    <div id="top_logo">
-    <img src='{{STATIC_URL}}img/clicktotal.png' width="425" height="84" alt="top logo" />
-  
-    </div><!-- End of top logo -->
-    
-    <!-- Start of facebook share -->
-    <div id="facebook_share">
-    <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=187,height=55′)');return false;}</script>
-    <a href="#" onclick="return fbs_click()" target="_blank"></a>
-    
-    </div><!-- End of facebook share -->
+    <div class="padded">
+      {% block slider %} {% endblock %}
+    </div>
 
-</div><!-- End of header -->
+    <article class="row">
+      <aside class="one fourth right-three padded border-left">
+        {% block lateral %} {% endblock %}
+      </aside>
+      <section class="three fourths left-one padded">
+        {% block contenido %} {% endblock %}
+      </section>
+    </article>
 
-<!-- Start of main content header -->
-<div id="main_content_header">
+    <footer class="footer align-right">
+        <p>&copy; 2013 Viewor</p>
+    </footer>
+  </div>
+  <!-- scripts -->
+  <script type="text/javascript" src='{{STATIC_URL}}js/plugins/jquery.orbit-1.4.0.js'></script>
+  <script type="text/javascript" src='{{STATIC_URL}}js/groundwork.js'></script>
 
-    <!-- Start of floating banner wrapper -->
-    <div id="floating_banner_wrapper">
-    
-        <!-- Start of floating banner left -->
-        <div id="floating_banner_left">
-        {% block encabezado_azul %} {% endblock %}
-        
-        </div><!-- End of floating banner left -->
-        
-        <!--Start of floating banner middle -->
-        <div id="floating_banner_middle">
-        {% block encabezado_gris %} {% endblock %}
-        
-        </div><!-- End of floating banner middle -->
-        
-        <!-- Start of floating banner right -->
-        <div id="floating_banner_right">
-        {% block encabezado_azul_derecho %} {% endblock %}
-        
-        </div><!-- End of floating banner right -->
-    
-    </div><!-- End of floating banner wrapper -->
+  <!-- google analytics -->
+  <script type="text/javascript">
 
-</div><!-- End of main content header -->
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+    _gaq.push(['_trackPageview']);
 
-<!-- Start of clear -->
-<div class="clear">
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
-</div><!-- End of clear -->
-
-<!-- Start of main wrapper -->
-<div id="main_wrapper">
-
-    <!-- Start of main content -->
-    <div id="main_content">
-        
-        <!-- Start of left content -->
-        <div class="left_content">
-        {% block contenido_izquierdo %} {% endblock %}
-        
-        </div><!-- End of left content -->
-        
-        <!-- Start of right content -->
-        <div class="right_content">
-            {% block contenido_derecho %} {% endblock %}
-        </div><!-- End of right content -->
-    
-        <!-- Start of separator -->
-        <div class="separator">
-        
-        </div><!-- End of separator -->
-        
-        <!-- Start of left content1 -->
-        <div class="left_content1">
-        
-                {% block cupones_izquierdos %} {% endblock %}
-
-        </div><!-- End of left content1 -->
- 
-        <!-- Start of right content1 -->
-   	  	<div class="right_content1">
-        
-                {% block cupones_derechos %} {% endblock %}
-        
-        </div><!-- End of right content1 -->
-    
-    </div><!-- End of main content -->
-    
-    <!-- Start of main content footer -->
-    <div id="main_content_footer">
-     
-    </div><!-- End of main content footer --> 
-       
-</div><!-- End of main wrapper -->
-
-<!-- Start of footer bottom -->
-<div id="footer_bottom">
-
-<div class="copyright">&copy; 2013 Viewor</div>
-    <!-- Start of footer left 2 -->
-<div id="footer_left2">
-
-    <ul class="social2">
-               
-       
-        <li><a href="#" title="Facebook" class='fade'><img src='{{STATIC_URL}}img/facebook_white.png' width="25" height="27" alt="facebook" /></a></li>
-        <li><a href="#" title="Twitter" class='fade'><img src='{{STATIC_URL}}img/twitter_white.png'  width="25" height="27" alt="twitter" /></a></li>
-        <li><a href="#" title="Linkedin" class='fade'><img src='{{STATIC_URL}}img/linkedin_white.png'  width="25" height="22" alt="linkedin" /></a></li>
-                    
-    </ul>
-    
-    
-</div><!-- End of footer left 2 -->   
-
-</div><!-- End of footer bottom -->
-    
-
-        <script>window.jQuery || document.write('<script src='{{STATIC_URL}}js/jquery-1.9.1.min.js'><\/script>')</script>
-
-        <script src='{{STATIC_URL}}js/plugins.js'></script>
-        <script src='{{STATIC_URL}}js/main.js'></script>
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-
+  </script>
 
 </body>
 </html>

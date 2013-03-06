@@ -3,17 +3,13 @@
 
 {% block tittle %} {% trans "Nueva promocion" %} {% endblock %}
 
-{% block encabezado_azul %} {% trans "Promos" %} {% endblock %}
-
-{% block encabezado_gris %} {% trans "Agregando promocion" %} {% endblock %}
-
-{% block encabezado_azul_derecho %} 
+{% block lateral %} 
 	<a href="/"> {% trans "Regresar" %} </a>
 {% endblock %}
 
 
 
-{% block contenido_izquierdo %}
+{% block contenido %}
 	<h2>{% trans "Agregar promocion" %}</h2>
 	<h3> Campos obligatorios</h3>
 	<p><b>Empresa o negocio: </b>Este campo lleva el nombre de la empresa que solicita crear la promocion. </p>
@@ -28,10 +24,6 @@
 
 
 
-
- {% endblock %}
-
-{% block contenido_derecho %} 
 	<div class="right_content_azul">
 		<p class="form_title">{% trans "Nueva promocion" %}</p>
 	<script type="text/javascript">

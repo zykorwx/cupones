@@ -3,58 +3,54 @@
 
 {% block tittle %} {% trans "Cupones de Descuentos!" %} {% endblock %}
 
-{% block encabezado_azul %} {% trans "ClickTotal" %} {% endblock %}
-
-{% block encabezado_gris %} {% trans "Cupones de Descuentos!" %} {% endblock %}
-
-{% block encabezado_azul_derecho %} 
-	<a href="/"> {% trans "Regresar" %} </a>
+{% block slider %} 
+      <div class="slider">
+        <img src="http://placehold.it/1200x400/24cada/ffffff&amp;text=El+mejor+pagado" alt=""/>
+        <img src="http://placehold.it/1200x400/bada55/ffffff&amp;text=El+segundo+mejor+pagado" alt=""/>
+        <img src="http://placehold.it/1200x400/c82647/ffffff&amp;text=El+tercero+mejor+pagado" alt=""/>
+        <img src="http://placehold.it/1200x400/198d98/ffffff&amp;text=El+cuarto+mejor+pagado" alt=""/>
+      </div>
 {% endblock %}
 
 
-
-
-{% block contenido_izquierdo %}
-        <h2 align="justify">Tenemos los mejores <span class="special">descuentos y promociones</span> para ti y tus amigos. Si quieres ahorrar o buscas una buena oferta estas en el lugar indicado, busca tu descuento aqui, entre mas cupones uses, mejores descuentos encontraras en la pagina. Compartela con tus amigos y familiares. Disfruta los descuentos y promociones que tenemos para ti.</h2>
-
-
- {% endblock %}
-
-{% block contenido_derecho %} 
-	<div class="right_content_azul">
-		<p class="form_title">{% trans "Inicia sesion" %}</p>
-        {% load url from future %}
-            <a href="{% url 'socialauth_begin' 'twitter' %}">Twitter</a>
-            <a href="{% url 'socialauth_begin' 'facebook' %}">Facebook</a>
-
-	</div>
+{% block lateral %} 
+    <h1>Inicia sesion</h1>
+            {% load url from future %}
+        <p>
+            <a class="social-icon facebook large tooltip" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook">Facebook</a> &nbsp;&nbsp;
+            <a class="social-icon twitter large tooltip" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter">Twitter</a>
+        </p>   
 {% endblock %}
 
-{% block cupones_izquierdos %}
+{% block contenido %}
+
+<h1><span class="special">ClickTotal</span></h1>
+        <p align="justify">Tenemos los mejores descuentos y promociones para ti y tus amigos. Si quieres ahorrar o no te alcanza para comprar algo, busca tu descuento aqui, entre mas cupones uses, mejores descuentos encontraras en la pagina. Compartela con tus
+        amigos y familiares. Disfruta los descuentos y promociones que tenemos para ti. </p>
+        <hr/>
+
+
         <h2><span class="special">Cupones</span> Hoy</h2>
-        
+        {% for dato1 in promociones %}
 
-        <ul>
-        {% for dato in promociones %}
-           <img src='{{STATIC_URL}}img/couplon_dotline_blue.jpg' width="435" height="15" alt="cut along here" align="top" />
-                <li><a href='/cupon/nuevo/{{dato.id}}'><img src='{{MEDIA_URL}}{{ dato.imagen }}' width="434" height="396" alt="this weeks coupon" /></a></li>
-            <img src='{{STATIC_URL}}img/couplon_dotline_blue.jpg' width="435" height="15" alt="cut along here" align="bottom" />
+            
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="one mobile half padded">
+                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="400" height="15" alt="linea" align="top"/>
+                    <a href='/cupon/nuevo/{{dato1.id}}'><img src='{{MEDIA_URL}}{{ dato1.imagen }}' width="400" height="300" alt="cupon" /></a>
+                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="400" height="15" alt="linea" align="bottom"/>
+                      </div>
+                </div>
+            {% else %}
+            <div class="row">
+              <div class="one mobile half padded">
+                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="400" height="15" alt="linea" align="top"/>
+                    <a href='/cupon/nuevo/{{dato1.id}}'><img src='{{MEDIA_URL}}{{ dato1.imagen }}' width="400" height="300" alt="cupon" /></a>
+                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="400" height="15" alt="linea" align="bottom"/>
+              </div>   
+            {% endif %}
+
         {% endfor %}
-        </ul>
-        
+
  {% endblock %}
 
-
-{% block cupones_derechos %}
-
-       <h2><span class="special">Cupones</span> Hoy</h2>
-        
-        <ul>
-        {% for dato in promociones1 %}
-            <img src='{{STATIC_URL}}img/couplon_dotline_blue.jpg' width="435" height="15" alt="cut along here" align="top" />
-                <li><a href='/cupon/nuevo/{{dato.id}}'><img src='{{MEDIA_URL}}{{ dato.imagen }}' width="434" height="396" alt="this weeks coupon" /></a></li>
-            <img src='{{STATIC_URL}}img/couplon_dotline_blue.jpg' width="435" height="15" alt="cut along here" align="bottom" />
-        {% endfor %}
-        </ul>
-
- {% endblock %}  
