@@ -10,6 +10,7 @@
 
 
 {% block contenido %}
+<<<<<<< HEAD
 <div class="row">
 	<div class="one mobile half padded">
 		<script type="text/javascript">
@@ -36,12 +37,31 @@
 		</div>
 </div>
 
+=======
+	<h2>{% trans "Agregar promocion" %}</h2>
+	<h3> Campos obligatorios</h3>
+	<p><b>Empresa o negocio: </b>Este campo lleva el nombre de la empresa que solicita crear la promocion. </p>
+	<p><b>Estado: </b>Use este campo para forzar la publicacion o no publicar una promocion. 
+		Sirve en caso de que la empresa o negocio no tenga una periodo de tiempo o numero limite de cupones.</p>
+	<p><b>Imagen de la promocion: </b>Este campo lleva la imagen de la promocion que se publicara. </p>
+>>>>>>> 4e7eec4f7f163a350b1863fd44e4efd5d396ab2f
 
 
 
 
 
+<<<<<<< HEAD
 
 
+=======
+	<div class="right_content_azul">
+		<p class="form_title">{% trans "Nueva promocion" %}</p>
+	<script type="text/javascript">
+	 $(function() {
+	        $("#id_fecha_publicacion").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true });
+	        $("#id_fecha_termino").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true  });
+	 });
+	</script>
+>>>>>>> 4e7eec4f7f163a350b1863fd44e4efd5d396ab2f
 
 {% endblock %}
