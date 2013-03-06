@@ -7,25 +7,14 @@
 	{% dajaxice_js_import %}
 {% endblock %}
 
-{% block encabezado_azul %} {% trans "Cupon" %} {% endblock %}
-
-{% block encabezado_gris %} {% trans "Generando tu cupon" %} {% endblock %}
-
-{% block encabezado_azul_derecho %} 
+{% block lateral %} 
 	<a href="/"> {% trans "Regresar" %} </a>
 {% endblock %}
 
+{% block contenido %}
 
-{% block contenido_izquierdo %}
+
 <img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="434" height="396" alt="Cupon" />
-
-
-
-
- {% endblock %}
-
-{% block titulo_contenido_derecho %} {% trans "Creando tu cupon" %} {% endblock %}
-{% block contenido_derecho %} 
 
 	<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 		{{formulario.as_p}}
@@ -36,10 +25,8 @@
 
 <br>
 	<h3> Instrucciones </h3>
-	<p><b>Da clic en genergar cupon: </b>Esto generara un numero para que lo puedas usar, este numero es tu cupon.</p>
+	<p><b>Da clic en generar cupon: </b>Esto generara un numero para que lo puedas usar, este numero es tu cupon.</p>
 	<p><b>Guarda el numero: </b>Canjea el numero con la empresa o negocio correspondiente y disfruta los beneficios de usar tu cupon.  </p>
 
 
-
-
-{% endblock %}
+ {% endblock %}
