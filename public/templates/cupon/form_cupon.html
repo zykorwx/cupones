@@ -7,26 +7,22 @@
 	{% dajaxice_js_import %}
 {% endblock %}
 
-{% block lateral %} 
-	<a href="/"> {% trans "Regresar" %} </a>
-{% endblock %}
+
 
 {% block contenido %}
-
-
-<img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="434" height="396" alt="Cupon" />
-
-	<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
-		{{formulario.as_p}}
-		<p><input class='generar' type='submit' value='{% trans "Generar cupon" %}' /></p>
-	</form>
-<div id='cupon'></div>
-
-
-<br>
-	<h3> Instrucciones </h3>
-	<p><b>Da clic en generar cupon: </b>Esto generara un numero para que lo puedas usar, este numero es tu cupon.</p>
-	<p><b>Guarda el numero: </b>Canjea el numero con la empresa o negocio correspondiente y disfruta los beneficios de usar tu cupon.  </p>
-
-
+<div class="row">
+	<div class="one mobile half padded">
+		<img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="434" height="396" alt="Cupon" />
+		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
+			{{formulario.as_p}}
+			<p><button class="large">{% trans "Generar cupon" %} <i class="icon-heart"></i></button></p>
+		</form>
+	</div>  
+	<div class="one mobile half padded">
+		<h3><span class="special">Instrucciones</span></h3>
+		<p><b>Da clic en generar cupon: </b>Esto generara un numero para que lo puedas usar, este numero es tu cupon.</p>
+		<p><b>Guarda el numero: </b>Canjea el numero con la empresa o negocio correspondiente y disfruta los beneficios de usar tu cupon.  </p>
+    </div>
+</div>
  {% endblock %}
+

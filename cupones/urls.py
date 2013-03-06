@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'),
     url(r'^promocion/nueva/$', 'cupon.views.nueva_promocion'),
     url(r'^cupon/nuevo/(?P<id_promocion>\d+)$', 'cupon.views.nuevo_cupon'),
+    url(r'^cupon/mostrar/(?P<id_cupon>\d+)$', 'cupon.views.mostrar_cupon'),
 )
 
 

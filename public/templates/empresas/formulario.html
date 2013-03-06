@@ -3,35 +3,38 @@
 
 {% block tittle %} {% trans "Nueva empresa" %} {% endblock %}
 
-{% block encabezado_azul %} {% trans "Empresa" %} {% endblock %}
-
-{% block encabezado_gris %} {% trans "Agregando empresa" %} {% endblock %}
-
-{% block encabezado_azul_derecho %} 
+{% block lateral %} 
 	<a href="/"> {% trans "Regresar" %} </a>
 {% endblock %}
 
 
 
 
-{% block contenido_izquierdo %}
-	<h2>{% trans "Agregar Empresa" %}</h2>
-	<p>Escriba los datos de la empresa entre mas campos llenos mejor, hay que darle la bienvenida a nuestro nuveo cliente.</p>
+
+{% block contenido %}
+
+<div class="row">
+	<div class="one mobile half padded">
+		<span class="special">{% trans "Nueva empresa" %}</span>
+		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
+			{{formulario.as_p}}
+			<p><button class="large">{% trans "Agregar" %} <i class="icon-plus"></i></button></p>
+		</form>
+	</div>  
+	<div class="one mobile half padded">
+		<h2>{% trans "Agregar Empresa" %}</h2>
+		<p>Escriba los datos de la empresa entre mas campos llenos mejor, hay que darle la bienvenida a nuestro nuveo cliente.</p>
+    </div>
+</div>
 
 
 
 
- {% endblock %}
-
-{% block contenido_derecho %} 
-	<div class="right_content_azul">
-		<p class="form_title">{% trans "Nueva empresa" %}</p>
 
 
-	<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
-		{{formulario.as_p}}
-		<p><input class="boton" type='submit' value={% trans "Agregar" %} /></p>
-	</form>
-	</div>
+
+
+
+
 {% endblock %}
 

@@ -26,12 +26,14 @@ def nuevo_cupon(request, id_promocion):
 		if formulario.is_valid():
 			cupon = Cupon(id_promocion=promociones, num_cupon=id_generator())			
 			cupon.save()
-			return render_to_response('cupon/mostrarCupon.html', {'cupon': cupon}, context_instance=RequestContext(request))
+			return HttpResponseRedirect('/cupon/mostrar/%s' % cupon.id)
 	else:
 		formulario = CuponForm()
 		return render_to_response('cupon/form_cupon.html', {'formulario':formulario, 'promociones': promociones}, context_instance=RequestContext(request))
 
-
+def mostrar_cupon(request, id_cupon):
+	cupon = Cupon.objects.get(pk=id_cupon)
+	return render_to_response('cupon/mostrarCupon.html', {'cupon': cupon}, context_instance=RequestContext(request))
 
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):

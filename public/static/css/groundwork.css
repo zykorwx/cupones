@@ -30,3 +30,8 @@ span.special{
 	color: #00A1F5;
 	font-size: 27px;
 }
+
+a.button img{
+	width: 400px;
+	height: 300px;
+}
