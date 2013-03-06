@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Este es tu nuevo cupon" %} {% endblock %}
+
+{% block encabezado_azul %} {% trans "Cupon" %} {% endblock %}
+
+{% block encabezado_gris %} {% trans "Felicidades" %} {% endblock %}
+
+{% block encabezado_azul_derecho %} 
+	<a href="/"> {% trans "Regresar" %} </a>
+{% endblock %}
+
+
+
+{% block contenido_izquierdo %}
+	<div id="mostrar_cupon">
+		<h1>Tu cupon es:</h1>
+		<h2>{{ cupon.num_cupon }}</h2>
+	</div>
+	<p><b>Copia tu cupon y entregalo a la empresa o negocio correspondiente y disfruta de los beneficios de tu cupon.</b></p>
+ {% endblock %}
+
+{% block contenido_derecho %} 
+	<div class="right_content_azul">
+		<p class="form_title">Empresa: {{ cupon.id_promocion.id_empresa.nombre }}</p>
+
+<h4>Direccion</h4>
+<p><b>Calle:</b> {{ cupon.id_promocion.id_empresa.calle }}<br>
+<b>Numero exterior:</b> {{ cupon.id_promocion.id_empresa.num_exterior }}&nbsp;&nbsp;<b>Numero interior:</b>{{ cupon.id_promocion.id_empresa.num_interior }}<br>
+<b>Colonia:</b> {{ cupon.id_promocion.id_empresa.colonia }}<br>
+<b>Municipio o delegacion:</b> {{ cupon.id_promocion.id_empresa.municipio }}<br>
+<b>Estado:</b> {{ cupon.id_promocion.id_empresa.estado }}</p>
+
+<h4>Informacion de contacto</h4>
+<p><b>Telefono:</b> {{ cupon.id_promocion.id_empresa.telefono }}<br>
+<b>Email:</b> {{ cupon.id_promocion.id_empresa.email }}<br>
+<b>Pagina web:</b> {{ cupon.id_promocion.id_empresa.pagina_web }}</p>
+
+{% endblock %}
