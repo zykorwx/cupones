@@ -1,9 +1,7 @@
 #encoding:utf-8
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, HttpResponse
-from django.utils import simplejson
-from models import Empresa
+from django.http import HttpResponseRedirect
 from forms import EmpresaForm
 
 def nueva_empresa(request):
