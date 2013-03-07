@@ -22,16 +22,16 @@
     {% if user.is_authenticated %}
         <h2>Bienvenido {{ user.username }}.</h2>
         <a class="button" href="/cerrar" title="Cerrar">Cerrar sesion</a> 
-        {% else %}
+    {% else %}
         <a name="iniciaSesion"></a>
-            <h1><span class="special">Inicia sesion</span></h1>
-                    {% load url from future %}
-                <p>
-                    <a class="social-icon facebook large tooltip" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook">Facebook</a> &nbsp;&nbsp;
-                    <a class="social-icon twitter large tooltip" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter">Twitter</a>
-                </p>
-                <p id='mensaje' class="warning message"></p>
+        <h1><span class="special">Inicia sesion</span></h1>
+        {% load url from future %}
+            <p>
+                <a class="social-icon facebook large tooltip" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook">Facebook</a> &nbsp;&nbsp;
+                <a class="social-icon twitter large tooltip" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter">Twitter</a>
+            </p>
         {% endif %}
+        <hr>
 {% endblock %}
 
 {% block blog %}

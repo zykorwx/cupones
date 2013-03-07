@@ -22,15 +22,19 @@ def nueva_promocion(request):
 @login_required(login_url='/#iniciaSecion')
 def nuevo_cupon(request, id_promocion):
 	promociones = Promocion.objects.get(pk=id_promocion)
-	if request.method == 'POST':
-		formulario = CuponForm(request.POST)
-		if formulario.is_valid():
-			cupon = Cupon(id_promocion=promociones, num_cupon=id_generator())			
-			cupon.save()
-			return HttpResponseRedirect('/cupon/mostrar/%s' % cupon.id)
+	cupones = Cupon.objects.filter(id_promocion=id_promocion).count()
+	if not cupon_limite(promociones, cupones):
+		if request.method == 'POST':
+			formulario = CuponForm(request.POST)
+			if formulario.is_valid():
+				cupon = Cupon(id_promocion=promociones, num_cupon=id_generator())			
+				cupon.save()
+				return HttpResponseRedirect('/cupon/mostrar/%s' % cupon.id)
+		else:
+			formulario = CuponForm()
+			return render_to_response('cupon/form_cupon.html', {'formulario':formulario, 'promociones': promociones, 'cupones':cupones}, context_instance=RequestContext(request))
 	else:
-		formulario = CuponForm()
-		return render_to_response('cupon/form_cupon.html', {'formulario':formulario, 'promociones': promociones}, context_instance=RequestContext(request))
+		return render_to_response('mensajes/noHay.html', {'promociones': promociones, 'cupones':cupones}, context_instance=RequestContext(request))
 
 def mostrar_cupon(request, id_cupon):
 	cupon = Cupon.objects.get(pk=id_cupon)
@@ -39,3 +43,11 @@ def mostrar_cupon(request, id_cupon):
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for x in range(size))
+
+def cupon_limite(promocion, actual):
+	if promocion.num_limite == actual:
+		promocion.estado = 0
+		promocion.save()
+		return True
+	else:
+		return False

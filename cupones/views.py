@@ -7,7 +7,7 @@ from cupon.models import Promocion
 
 
 def index(request):
-	promociones = Promocion.objects.all()
+	promociones = Promocion.objects.filter(estado = 1)
 	return render_to_response('cupones/index.html', {'promociones': promociones}, context_instance=RequestContext(request))
 
 

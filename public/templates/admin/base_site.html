@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Administrador ClickTotal' %}{% endblock %}
+
+{% block branding %}
+   <h1 id="site-name">{% trans 'Administrador ClickTotal' %}</h1>
+   <a  href='/'> {% trans 'Ver pagina' %}</a>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
