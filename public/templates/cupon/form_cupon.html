@@ -8,13 +8,19 @@
 {% endblock %}
 
 {% block lateral %} 
-	<a href="/"> {% trans "Regresar" %} </a>
+<nav>
+  <ul>
+    <li><a href="/"> {% trans "Regresar" %} </a></li>
+  </ul>
+</nav>
+
+	
 {% endblock %}
 
 {% block contenido %}
 <div class="row">
 	<div class="one mobile half padded">
-		<img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="434" height="396" alt="Cupon" />
+		<img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="400" height="300" alt="Cupon" />
 		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 			{{formulario.as_p}}
 			<p><button class="large">{% trans "Generar cupon" %} <i class="icon-heart"></i></button></p>

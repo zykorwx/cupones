@@ -22,15 +22,16 @@
         </p>   
 {% endblock %}
 
-{% block contenido %}
+{% block blog %}
 
 <h1><span class="special">ClickTotal</span></h1>
         <p align="justify">Tenemos los mejores descuentos y promociones para ti y tus amigos. Si quieres ahorrar o no te alcanza para comprar algo, busca tu descuento aqui, entre mas cupones uses, mejores descuentos encontraras en la pagina. Compartela con tus
         amigos y familiares. Disfruta los descuentos y promociones que tenemos para ti. </p>
         <hr/>
-
-
-        <h2><span class="special">Cupones</span> Hoy</h2>
+ {% endblock %}
+{% block contenido %}
+    <br>
+        <h2><span class="special">&nbsp;&nbsp;Cupones</span> Hoy</h2>
         {% for dato1 in promociones %}
 
             
