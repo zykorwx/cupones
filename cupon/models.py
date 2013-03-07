@@ -19,7 +19,7 @@ class Promocion(models.Model):
 	imagen = models.ImageField(upload_to='promociones', verbose_name='Imagen promocion')
 	
 	def __unicode__(self):
-            return '%s %s' % (self.id_empresa, self.imagen)
+            return u'Empresa: %s - id_promocion: %s - estado: %s' % (self.id_empresa, self.id, self.estado)
 
 class Cupon(models.Model):
 	id_promocion = models.ForeignKey(Promocion, verbose_name=_('Promocion del cupon'))

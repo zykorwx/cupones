@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load dajaxice_templatetags %}
 
-{% block tittle %} {% trans "Generar nuevo cupon" %} {% endblock %}
+{% block tittle %} {% trans "Se han terminado :(" %} {% endblock %}
 {% block head %} 
 	{% dajaxice_js_import %}
 {% endblock %}
@@ -30,15 +30,12 @@
 <div class="row">
 	<div class="one mobile half padded">
 		<img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="400" height="300" alt="Cupon" />
-		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
-			{{formulario.as_p}}
-			<p><button class="large">{% trans "Generar cupon" %} <i class="icon-heart"></i></button></p>
-		</form>
+		<p class="success message">Sentimos las molestias, pero se acaban de terminar los cupones para esta promocion. Suerte para la proxima, o tal vez fue el destino y te espera una mejor promocion en la pagina. <i class="icon-heart"> </i> </p>
 	</div>  
 	<div class="one mobile half padded">
-		<h3><span class="special">Instrucciones</span></h3>
-		<p><b>Da clic en generar cupon: </b>Esto generara un numero para que lo puedas usar, este numero es tu cupon.</p>
-		<p><b>Guarda el numero: </b>Canjea el numero con la empresa o negocio correspondiente y disfruta los beneficios de usar tu cupon.  </p>
+		<h3><span class="special">Aun hay mas</span></h3>
+		<p><b>Promociones</b>Esto seguro fue solo un contratiempo, pero sigue buscando en la pagina y encontraras igual o mejores promociones.</p>
+		<p><b>Aumentar </b>Gracias por tu confianza, seguiremos trabajando para darte el mejor servicio.</p>
     </div>
 </div>
  {% endblock %}
