@@ -11,14 +11,16 @@
 
 {% block contenido %}
 
-<div class="row">
-	<div class="one mobile half padded">
 		<script type="text/javascript">
 			$(function() {
 				$("#id_fecha_publicacion").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true });
 				$("#id_fecha_termino").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true  });
 			});
 		</script>
+
+<div class="row">
+	<div class="one mobile half padded">
+
 		<h2><span class="special">{% trans "Agregar promocion" %}</span></h2>
 		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 			{{formulario.as_p}}
