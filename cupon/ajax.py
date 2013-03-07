@@ -3,8 +3,8 @@ from dajax.core import Dajax
 
 
 @dajaxice_register
-def generaCupon(request, cupon):
+def mensaje(request):
 	dajax = Dajax()
-	dajax.assign('#cupon', 'innerHTML', cupon)
+	dajax.assign('p #mensaje', 'innerHTML', 'Debes logearte')
 	return dajax.json()
 
