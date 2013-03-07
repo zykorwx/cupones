@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from forms import CuponForm, PromocionForm
 from models import Promocion, Cupon
 import string
@@ -18,7 +19,7 @@ def nueva_promocion(request):
     	formulario = PromocionForm()
     	return render_to_response('cupon/form_promocion.html', {'formulario':formulario}, context_instance=RequestContext(request))
 
-
+@login_required(login_url='/#iniciaSecion')
 def nuevo_cupon(request, id_promocion):
 	promociones = Promocion.objects.get(pk=id_promocion)
 	if request.method == 'POST':

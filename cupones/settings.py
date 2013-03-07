@@ -190,8 +190,8 @@ FACEBOOK_APP_ID              = '306615159417586'
 FACEBOOK_API_SECRET          = 'a0c086778c72d8fc8c57adfc3b850dde'
 
 
-LOGIN_URL          = '/login-form/'
-LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_URL          = '/#iniciaSecion'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL    = '/login-error/'
 
 # Para que despues se cambien los urls
