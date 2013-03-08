@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'dajax',
     'social_auth',
     'south',
+    'endless_pagination',
     'empresa',
     'cupon',
     'usuario',
