@@ -24,12 +24,14 @@ class HistorialCupones(models.Model):
 # Capturar el avatar de nuevos usuarios
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.twitter import TwitterBackend
-from social_auth.signals import socialauth_registered
+from social_auth.signals import pre_update
 
-def new_users_handler(sender, user, response, details, **kwargs):
-    user.is_new = True
-    if user.is_new:
-        if "id" in response:
+
+# Actualizar avatar
+def social_extra_values(sender, user, response, details, **kwargs):
+    result = False
+
+    if "id" in response:
             from urllib2 import urlopen, HTTPError
             from django.template.defaultfilters import slugify
             from django.core.files.base import ContentFile
@@ -44,17 +46,14 @@ def new_users_handler(sender, user, response, details, **kwargs):
                  	
                 if url:
                     avatar = urlopen(url)
-                    perfil = Perfil(user=user)
+                    user.perfil.avatar = slugify(user.username +" social") + '.jpg',
+                    ContentFile(avatar.read())
 
-                    perfil.avatar.save(slugify(user.username +" social") + '.jpg',
-                            ContentFile(avatar.read()))
-
-                    perfil.save()
+                    user.save()
 
             except HTTPError:
                 pass
-    return False
+            result = True
+    return result
 
-socialauth_registered.connect(new_users_handler, sender=None)
-
-
+pre_update.connect(social_extra_values, sender=None)
