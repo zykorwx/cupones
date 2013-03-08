@@ -25,6 +25,7 @@ class HistorialCupones(models.Model):
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.twitter import TwitterBackend
 from social_auth.signals import socialauth_registered
+from django.db.models.signals import post_save
 
 def new_users_handler(sender, user, response, details, **kwargs):
     user.is_new = True
