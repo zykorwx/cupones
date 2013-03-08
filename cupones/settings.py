@@ -122,14 +122,16 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
     'dajaxice',
     'dajax',
     'social_auth',
     'south',
     'empresa',
     'cupon',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
+    'usuario',
+
 )
 
 # A sample logging configuration. The only tangible logging

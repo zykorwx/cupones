@@ -26,4 +26,4 @@ class Cupon(models.Model):
 	num_cupon = models.CharField(max_length=10, verbose_name=_('Codigo unico del cupon'))
 
 	def __unicode__(self):
-            return '%s %s' % (self.id_promocion, self.num_cupon)
+            return '%s - %s' % (self.id_promocion, self.num_cupon)
