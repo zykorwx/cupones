@@ -38,7 +38,7 @@ def new_users_handler(sender, user, response, details, **kwargs):
             try:
                 url = None
                 if sender == FacebookBackend:
-                    url = "http://graph.facebook.com/%s/picture?type=small" \
+                    url = "http://graph.facebook.com/%s/picture?type=square" \
                     % response["id"]
                 elif sender == TwitterBackend:
                  	url = response["profile_image_url"]
