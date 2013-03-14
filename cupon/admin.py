@@ -6,7 +6,9 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from usuario.models import Perfil
 
-
+# El administrador de django nos ayudara a nosotros a llevar el manejo de los
+# clientes y no tener que gastar mucho tiempo en eso.
+# Se agrega la relacion 1, 1 al administrador de django
 class PerfilInline(admin.StackedInline):
     model = Perfil
     can_delete = False

@@ -19,3 +19,13 @@ class Empresa(models.Model):
 
 	def __unicode__(self):
     		return self.nombre
+
+
+class UserEmpresa(models.Model):
+	empresa = models.OneToOneField(Empresa)
+	user = models.CharField(unique=True, max_length=20, verbose_name=_('Nombre de usuario'))
+	password = models.CharField(max_length=20, verbose_name=_('Password'))
+	fecha_creacion = models.DateTimeField(auto_now=True)
+
+	def __unicode__(self):
+    		return self.user

@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Administrador de empresas " %}  {% endblock %}
+
+{% block lateral %} 
+<nav>
+  <ul>
+    <li><a href="/empresa/cerrar"> {% trans "Cerrar sesion" %} </a></li>
+  </ul>
+</nav>
+{% endblock %}
+
+
+{% block contenido %}
+<div class="row">
+	<div class="one mobile half padded">		
+	<p>Copia tu cupon y entregalo a la empresa o negocio correspondiente y disfruta de los beneficios de tu cupon.</p>
+	</div>  
+	<div class="one mobile half padded">
+		<h1><span class="special">hola</span></h1>
+		{% for promo in promos  %}
+            <div class="row">
+                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="200" height="15" alt="linea" align="top"/>
+                    <a class="tooltip"  href='/empresa/admin/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="200" height="100" alt="promocion" /></a>
+                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="200" height="15" alt="linea" align="bottom"/>
+              </div> 
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+

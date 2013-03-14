@@ -8,7 +8,7 @@ from models import Promocion, Cupon
 import string
 import random
 
-
+# Esta es la vista para generar una nueva promocion.
 def nueva_promocion(request):
     if request.method == 'POST':
     	formulario = PromocionForm(request.POST, request.FILES)
@@ -19,6 +19,9 @@ def nueva_promocion(request):
     	formulario = PromocionForm()
     	return render_to_response('cupon/form_promocion.html', {'formulario':formulario}, context_instance=RequestContext(request))
 
+# Para generar un nuevo cupon los usuarios deben estar conectados
+# se usua un link interno solo para mover a los usuarios a la parte de login.
+# Si los cupones se agotaron y el usuario llega a ver este cupon vacio se le manda a al template no hay
 @login_required(login_url='/#iniciaSecion')
 def nuevo_cupon(request, id_promocion):
 	promociones = Promocion.objects.get(pk=id_promocion)
@@ -36,14 +39,17 @@ def nuevo_cupon(request, id_promocion):
 	else:
 		return render_to_response('mensajes/noHay.html', {'promociones': promociones, 'cupones':cupones}, context_instance=RequestContext(request))
 
+# Una vez generado el cupon se muestra el cupon de la siguiente forma, el id_cupon 
+# se recibe una vez que nuevo cupon es usado o creado
 def mostrar_cupon(request, id_cupon):
 	cupon = Cupon.objects.get(pk=id_cupon)
 	return render_to_response('cupon/mostrarCupon.html', {'cupon': cupon}, context_instance=RequestContext(request))
 
-
+# Este metodo lo unico que hace es generar un alfanumerico aleatorio de 6 digitos.
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for x in range(size))
 
+# Este metodo valida el numero de cupones actuales y restantes
 def cupon_limite(promocion, actual):
 	if promocion.num_limite == actual:
 		promocion.estado = 0

@@ -1,6 +1,21 @@
 #encoding:utf-8
 # Django settings for myproject project.
+# Requisitos y modificaciones
+# Tener instalados las siguientes herramientas django:
+#   'dajaxice',      --> http://www.dajaxproject.com/ <--- dejo links de referencias a las distintas herramientas
+#   'dajax',         --> http://www.dajaxproject.com/
+#   'social_auth',   --> http://django-social-auth.readthedocs.org/en/latest/
+#   'south',         --> http://south.aeracode.org/
+#   'endless_pagination',  --> https://django-endless-pagination.readthedocs.org/en/latest/
 
+# Se agregaron las siguientes partes:
+# TEMPLATE_CONTEXT_PROCESSORS
+# AUTHENTICATION_BACKENDS
+# Configuraciones de social_auth
+# Estas se encuentran al final del archivo 
+
+# Revisar datos de la base de datos
+# clicktotal es el nombre del proyecto
 
 import os
 RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
@@ -9,7 +24,6 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Antonio de Jesus Velazquez Velazques', 'antoniodejex@gmail.com'),
     ('Saul Enrrique Pineda Torres', 'enrique_wx@hotmail.com'),
 )
 
@@ -106,10 +120,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'cupones.urls'
+ROOT_URLCONF = 'clicktotal.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'cupones.wsgi.application'
+WSGI_APPLICATION = 'clicktotal.wsgi.application'
 
 TEMPLATE_DIRS = (
      os.path.join(RUTA_PROYECTO,'../public/templates/'),

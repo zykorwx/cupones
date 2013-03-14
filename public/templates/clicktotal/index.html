@@ -20,10 +20,6 @@
 {% block lateral %} 
     {% if user.is_authenticated %}
         <h3><img src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> <span class="special">{{ user.username }}</span></h3>
-
-
-
-
         <a class="button" href="/cerrar" title="Cerrar">Cerrar sesion</a> 
     {% else %}
         <a name="iniciaSesion"></a>
@@ -33,7 +29,7 @@
                 <a class="social-icon facebook large tooltip" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook">Facebook</a> &nbsp;&nbsp;
                 <a class="social-icon twitter large tooltip" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter">Twitter</a>
             </p>
-        {% endif %}
+    {% endif %}
         <hr>
 {% endblock %}
 

@@ -3,6 +3,7 @@ from django.db import models
 from empresa.models import Empresa
 from django.utils.translation import ugettext_lazy as _
 
+# Se usa para usarlo en un combo
 ESTADO_CHOICES = (
     ('1', _('Publicar')),
     ('0', _('No publicar')),
@@ -24,6 +25,7 @@ class Promocion(models.Model):
 class Cupon(models.Model):
 	id_promocion = models.ForeignKey(Promocion, verbose_name=_('Promocion del cupon'))
 	num_cupon = models.CharField(max_length=10, verbose_name=_('Codigo unico del cupon'))
+	fecha_creacion = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
             return '%s - %s' % (self.id_promocion, self.num_cupon)

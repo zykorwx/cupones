@@ -14,21 +14,26 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
     {'document_root': settings.MEDIA_ROOT, }
     ),
-#dajaxice
+# Dajaxice en caso de necesitar ajax en un futuro
 	url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
-#social
+# Login Facebook, Twitter
 	url(r'', include('social_auth.urls')),
-#Urls
-	url(r'^$', 'cupones.views.index'),
+# Urls clicktotal
+	url(r'^$', 'clicktotal.views.index'),
+# Urls Usuario
+    url(r'^cerrar/$', 'usuario.views.cerrar'),
+# Urls Empresa
     url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'),
+    url(r'^empresa/login$', 'empresa.views.login_empresa'),
+    url(r'^empresa/admin$', 'empresa.views.login_empresa'),
+    url(r'^empresa/admin/(?P<id_empresa>\d+)$', 'empresa.views.admin_empresa'),
+    url(r'^empresa/cerrar$', 'empresa.views.logout_empresa'),
+    url(r'^empresa/registro/(?P<id_empresa>\d+)$', 'empresa.views.nuevo_user_empresa'),
+# Urls Cupon
     url(r'^promocion/nueva/$', 'cupon.views.nueva_promocion'),
     url(r'^cupon/nuevo/(?P<id_promocion>\d+)$', 'cupon.views.nuevo_cupon'),
     url(r'^cupon/mostrar/(?P<id_cupon>\d+)$', 'cupon.views.mostrar_cupon'),
-    url(r'^cerrar/$', 'cupones.views.cerrar'),
 )
-
-
-
 
 
 # Esta linea hace que en modo produccion o trabajando con el wsgi funcionen
