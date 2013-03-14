@@ -18,7 +18,7 @@ class Promocion(models.Model):
 	num_limite = models.SmallIntegerField(blank=True, null=True, verbose_name=_('Numero limite de cupones'))
 	estado = models.CharField(max_length=1, choices=ESTADO_CHOICES, verbose_name=_('Estado'), default='0')
 	imagen = models.ImageField(upload_to='promociones', verbose_name='Imagen promocion')
-	
+	descripcion =models.CharField(max_length=200, verbose_name=_('Descripcion de la primocion'))
 	def __unicode__(self):
             return u'Empresa: %s - id_promocion: %s - estado: %s' % (self.id_empresa, self.id, self.estado)
 
