@@ -1,13 +1,21 @@
 #encoding:utf-8
 from django.db import models
-from empresa.models import Empresa
 from django.utils.translation import ugettext_lazy as _
+from empresa.models import Empresa
 
 # Se usa para usarlo en un combo
 ESTADO_CHOICES = (
     ('1', _('Publicar')),
     ('0', _('No publicar')),
 )
+
+# Confuguracion de las promociones: por ahora solo maneja el precio.
+class ConfPromocion(models.Model):
+	nombre = models.CharField(max_length=15, verbose_name=_(u'Nombre de configuracion'))
+	precio_x_cupon = models.DecimalField(max_digits=6, decimal_places=2, verbose_name=_(u'Monto por cupon'))
+	
+	def __unicode__(self):
+		return self.nombre
 
 # Create your models here.
 class Promocion(models.Model):
@@ -18,14 +26,24 @@ class Promocion(models.Model):
 	num_limite = models.SmallIntegerField(blank=True, null=True, verbose_name=_('Numero limite de cupones'))
 	estado = models.CharField(max_length=1, choices=ESTADO_CHOICES, verbose_name=_('Estado'), default='0')
 	imagen = models.ImageField(upload_to='promociones', verbose_name='Imagen promocion')
-	descripcion =models.TextField(verbose_name=_('Descripcion de la promocion'))
+	descripcion = models.TextField(verbose_name=_('Descripcion de la promocion'))
+	confPromocion = models.ForeignKey(ConfPromocion, verbose_name=_('Tipo promocion:'))
 	def __unicode__(self):
             return u'Empresa: %s - id_promocion: %s - estado: %s' % (self.id_empresa, self.id, self.estado)
+	
+	# Este metodo cuenta los cupones que hay por promocion
+	def cuentaCupones(self):
+		return Cupon.objects.filter(id_promocion= self).count()
+	cupones = property(cuentaCupones)
 
+# Genera el cupon de la empresa
 class Cupon(models.Model):
 	id_promocion = models.ForeignKey(Promocion, verbose_name=_('Promocion del cupon'))
 	num_cupon = models.CharField(max_length=10, verbose_name=_('Codigo unico del cupon'))
 	fecha_creacion = models.DateTimeField(auto_now=True)
 
+	# Muestra el id de la promocion junto al numero de cupon generado
 	def __unicode__(self):
-            return '%s - %s' % (self.id_promocion, self.num_cupon)
+		return '%s - %s' % (self.id_promocion, self.num_cupon)
+
+

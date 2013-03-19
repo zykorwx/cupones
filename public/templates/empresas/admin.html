@@ -6,11 +6,16 @@
 {% block lateral %} 
 <nav>
   <ul>
+    <li><a href="/"> {% trans "Regresar" %} </a></li>
     <li><a href="/empresa/cerrar"> {% trans "Cerrar sesion" %} </a></li>
   </ul>
 </nav>
 {% endblock %}
 
+{% block blog %}
+  <h1>Hola <span class="special-1">{{ request.session.empresa_nombre }}</span></h1>
+  <p>En este espacio podrás administrar tus promociones, ver tu estado de cuenta, elegir si tu promoción seguirá mostrándose o no, cambiar el número de cupones máximo, o cambiar la fecha de finalización de tu cupón, pagar tu cuenta entre otras cosas, disfrutalo.</p>
+{% endblock %}
 
 {% block contenido %}
 <div class="row">
@@ -18,14 +23,20 @@
 	<p>Copia tu cupon y entregalo a la empresa o negocio correspondiente y disfruta de los beneficios de tu cupon.</p>
 	</div>  
 	<div class="one mobile half padded">
-		<h1><span class="special">hola</span></h1>
-		{% for promo in promos  %}
-            <div class="row">
-                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="200" height="15" alt="linea" align="top"/>
-                    <a class="tooltip"  href='/empresa/admin/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="200" height="100" alt="promocion" /></a>
-                <img src='{{STATIC_URL}}images/linea-cupon.jpg' width="200" height="15" alt="linea" align="bottom"/>
-              </div> 
-        {% endfor %}
+
+<table class="promos">
+  <tr>
+    <th scope="col"><span class="special">Promociones</span></th>
+    <th scope="col"><span class="special">Cupones</span></th>
+  </tr>
+	{% for promo in promos  %}
+  <tr>
+    <td><a class="tooltip"  href='/empresa/admin/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+    <td>{{promo.cupones}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
     </div>
 </div>
 

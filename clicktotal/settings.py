@@ -7,6 +7,7 @@
 #   'social_auth',   --> http://django-social-auth.readthedocs.org/en/latest/
 #   'south',         --> http://south.aeracode.org/
 #   'endless_pagination',  --> https://django-endless-pagination.readthedocs.org/en/latest/
+# instalar pip install python-dateutil --> para manejar fechas facilmente
 
 # Se agregaron las siguientes partes:
 # TEMPLATE_CONTEXT_PROCESSORS

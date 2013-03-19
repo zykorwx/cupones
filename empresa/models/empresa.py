@@ -2,6 +2,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
+
 # Create your models here.
 class Empresa(models.Model):
 	nombre = models.CharField(unique=True, max_length=50, verbose_name=_('Nombre de la empresa'))
@@ -18,14 +20,7 @@ class Empresa(models.Model):
 	nombre_encargado = models.CharField(max_length=50, null=True, blank=True)
 
 	def __unicode__(self):
-    		return self.nombre
+		return self.nombre
 
-
-class UserEmpresa(models.Model):
-	empresa = models.OneToOneField(Empresa)
-	user = models.CharField(unique=True, max_length=20, verbose_name=_('Nombre de usuario'))
-	password = models.CharField(max_length=20, verbose_name=_('Password'))
-	fecha_creacion = models.DateTimeField(auto_now=True)
-
-	def __unicode__(self):
-    		return self.user
+	class Meta:
+		app_label = 'empresa'

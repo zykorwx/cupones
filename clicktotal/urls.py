@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'),
     url(r'^empresa/login$', 'empresa.views.login_empresa'),
     url(r'^empresa/admin$', 'empresa.views.login_empresa'),
-    url(r'^empresa/admin/(?P<id_empresa>\d+)$', 'empresa.views.admin_empresa'),
+    url(r'^empresa/admin/(?P<empresa>\d+)$', 'empresa.views.admin_empresa'),
     url(r'^empresa/cerrar$', 'empresa.views.logout_empresa'),
     url(r'^empresa/registro/(?P<id_empresa>\d+)$', 'empresa.views.nuevo_user_empresa'),
 # Urls Cupon

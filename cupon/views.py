@@ -17,7 +17,7 @@ def nueva_promocion(request):
     		return HttpResponseRedirect('')
     else:
     	formulario = PromocionForm()
-    	return render_to_response('cupon/form_promocion.html', {'formulario':formulario}, context_instance=RequestContext(request))
+    return render_to_response('cupon/form_promocion.html', {'formulario':formulario}, context_instance=RequestContext(request))
 
 # Para generar un nuevo cupon los usuarios deben estar conectados
 # se usua un link interno solo para mover a los usuarios a la parte de login.

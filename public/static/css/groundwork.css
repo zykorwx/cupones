@@ -29,3 +29,14 @@ span.special{
 	color: #00A1F5;
 	font-size: 27px;
 }
+
+span.special-1{
+	color: #00A1F5;
+}
+
+table.promos th, table td { 
+overflow-wrap: break-word;
+padding: 10px;
+text-align: center;
+white-space: normal;
+}
