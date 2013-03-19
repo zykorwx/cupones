@@ -25,8 +25,8 @@ propiedades para facilitar las consultas.*
 **(add) empresa.models.pagoEmpresa.cantidadTotalCuponesEmpresa** *# Devuelve la cantidad total de cupones que ha expedido una empresa*
 
 **(add) empresa.models.pagoEmpresa.cantidadCuponesPeriodo*** # Devuelve la cantidad de cupones expedidos desde el ultimo pago*
-**
-(add) empresa.models.pagoEmpresa.esPrimerPago** *# Devuelve si es el primer pago que realiza la empresa*
+
+**(add) empresa.models.pagoEmpresa.esPrimerPago** *# Devuelve si es el primer pago que realiza la empresa*
 
 ----------
 
