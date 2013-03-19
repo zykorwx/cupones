@@ -9,7 +9,7 @@ class EmpresaForm(ModelForm):
 		model = Empresa
 
 class UserEmpresaForm(ModelForm):
-	repite_password = forms.CharField(max_length=20, label=_('Repite password'))
+	repite_password = forms.CharField(max_length=20, label=_('Repite password'), widget=forms.PasswordInput)
 	class Meta:
 		password = forms.CharField(widget=forms.PasswordInput)
 		model = UserEmpresa
