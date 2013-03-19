@@ -24,11 +24,13 @@ class pagoEmpresa(models.Model):
 		return Cupon.objects.filter(id_promocion__id_empresa=self.empresa)
 	cantidadTotalCuponesEmpresa = property(_cantidadTotalCuponesEmpresa)
 
-	def cantidadCuponesPeriodo(self):
+	def _cantidadCuponesPeriodo(self):
 		return Cupon.objects.filter(fecha_creacion__range=(self.ultimoPago, self.fechaSiguientePago), id_promocion__id_empresa=self.empresa)
-
+	cantidadCuponesPeriodo = property(_cantidadCuponesPeriodo)
+	
 	def _esPrimerPago(self):
 		return self.objects.filter(empresa=self.empresa).count == 0
+	esPrimerPago = property(_esPrimerPago)
 
 	class Meta:
 		app_label = 'empresa'

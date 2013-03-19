@@ -21,4 +21,4 @@ class UserEmpresaForm(ModelForm):
 
 class LoginEmpresaForm(forms.Form):
 	user = forms.CharField(max_length=20, label=_('Nombre de usuario'))
-	password = forms.CharField(max_length=20, label= _(u'Contraseña'))
+	password = forms.CharField(max_length=20, label= _(u'Contraseña'), widget=forms.PasswordInput)
