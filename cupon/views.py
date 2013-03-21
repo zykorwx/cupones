@@ -3,12 +3,14 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from forms import CuponForm, PromocionForm
 from models import Promocion, Cupon
 import string
 import random
 
 # Esta es la vista para generar una nueva promocion.
+@staff_member_required
 def nueva_promocion(request):
     if request.method == 'POST':
     	formulario = PromocionForm(request.POST, request.FILES)

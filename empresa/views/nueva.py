@@ -2,12 +2,14 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.contrib.admin.views.decorators import staff_member_required
 from empresa.forms import EmpresaForm, UserEmpresaForm
 from empresa.models import UserEmpresa
 
 
 # Se genera el formulario para agregar una nueva empresa,
 # una vez que esta empresa se creo se manda al registro para generar su login.
+@staff_member_required
 def nueva_empresa(request):
     if request.method=='POST':
     	formulario = EmpresaForm(request.POST)
@@ -20,6 +22,7 @@ def nueva_empresa(request):
 
 # Se genera el formulario para que la empresa tenga un nombre de usuario unico y una contrase«Ða
 # para ingresar a su administrador.
+@staff_member_required
 def nuevo_user_empresa(request, id_empresa):
 	if request.method=='POST':
 		formulario = UserEmpresaForm(request.POST)

@@ -20,22 +20,50 @@
 {% block contenido %}
 <div class="row">
 	<div class="one mobile half padded">		
-	<p>Copia tu cupon y entregalo a la empresa o negocio correspondiente y disfruta de los beneficios de tu cupon.</p>
+    <p>Tu saldo actual es: <span class="success message"> {{ pago }}</span></p> 
 	</div>  
+
 	<div class="one mobile half padded">
 
+<div class="tabs">
+  <ul>
+    <li><a href="#tab-1" class="active">Mostrar todos</a></li>
+    <li><a href="#tab-2">Ocultar los no publicados</a></li>
+  </ul>
+  <div id="tab-1" class="active">
+    <h3>Mostrar todos</h3>
 <table class="promos">
   <tr>
     <th scope="col"><span class="special">Promociones</span></th>
     <th scope="col"><span class="special">Cupones</span></th>
   </tr>
-	{% for promo in promos  %}
+  {% for promo in promos  %}
   <tr>
-    <td><a class="tooltip"  href='/empresa/admin/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-    <td>{{promo.cupones}}</td>
+    <td><a class="tooltip"  href='/empresa/admin/promo/{{promo.id_empresa.id}}' title='Promocion con id: {{promo.id_empresa.id}}' ><img src='{{MEDIA_URL}}{{ promo.id_empresa.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+    <td>{{promo.id_empresa.cupones}}</td>
   </tr>
   {% endfor %}
 </table>
+  </div>
+  <div id="tab-2">
+    <h3>Ocultar los no publicados</h3>
+<table class="promos">
+  <tr>
+    <th scope="col"><span class="special">Promociones</span></th>
+    <th scope="col"><span class="special">Cupones</span></th>
+  </tr>
+  {% for promo in promos  %}
+      {% if promo.id_empresa.estado == '1' %}
+  <tr>
+    <td><a class="tooltip"  href='/empresa/admin/promo/{{promo.id_empresa.id}}' title='Promocion con id: {{promo.id_empresa.id}}' ><img src='{{MEDIA_URL}}{{ promo.id_empresa.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+    <td>{{promo.id_empresa.cupones}}</td>
+  </tr>
+      {% endif %}
+  {% endfor %}
+</table>
+  </div>
+</div>
+
 
     </div>
 </div>
