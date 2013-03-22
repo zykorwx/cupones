@@ -1,7 +1,8 @@
 #encoding:utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from empresa.models import Empresa
+from django.db.models import Max
+from empresa.models import Empresa, pagoEmpresa
 
 # Se usa para usarlo en un combo
 ESTADO_CHOICES = (
@@ -35,6 +36,17 @@ class Promocion(models.Model):
 	def cuentaCupones(self):
 		return Cupon.objects.filter(id_promocion= self).count()
 	cupones = property(cuentaCupones)
+
+	def cuentaCuponesPeriodo(self):
+		ultimoPago = pagoEmpresa.objects.filter(empresa=self.id_empresa).aggregate(Max('fecha_pago'))
+		if ultimoPago['fecha_pago__max'] == None:
+			return Cupon.objects.filter(id_promocion=self.id).count()
+		else:
+			from dateutil.relativedelta import relativedelta
+			siguientePago = ultimoPago['fecha_pago__max'] + relativedelta(months=1)
+			return Cupon.objects.filter(fecha_creacion__range=(ultimoPago['fecha_pago__max'],siguientePago), id_promocion=self.id).count()
+	cuponesPeriodo = property(cuentaCuponesPeriodo)
+
 
 # Genera el cupon de la empresa
 class Cupon(models.Model):

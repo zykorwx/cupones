@@ -2,7 +2,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from empresa import Empresa
-from cupon.models import Promocion
 
 CONCEPTOS = (
     ('1', _('Inscripcion')),
@@ -22,17 +21,6 @@ class pagoEmpresa(models.Model):
 
 	def __unicode__(self):
             return u'Empresa: %s - Canitdad: %s - Fecha de pago: %s' % (self.empresa, self.cantidad, self.fecha_pago)
-
-	class Meta:
-		app_label = 'empresa'
-
-class HistorialCuponesEmpresa(models.Model):
-	promocion = models.ForeignKey(Promocion)
-	totalCupones = models.IntegerField(default=0)
-	periodo = models.DateTimeField(blank=True, null=True)
-
-	def __unicode__(self):
-		return u'Promocion: %s - Numero de cupones: %s - Periodo: %s' % (self.promocion, self.totalCupones, self.periodo)
 
 	class Meta:
 		app_label = 'empresa'
