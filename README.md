@@ -1,5 +1,17 @@
 Clicktotal
 =======
+Log viernes 22 de marzo 2013
+==========================================
+# Novedades #
+
+- Ya se calcula el pago.
+- Se muestra el numero de cupones por periodo.
+- Se muestra el numero de cupones por promoción dentro del periodo.
+- Se muestra el numero total de cupones por promoción.
+- Se agrego un tab dentro del admin de empresas
+- Se agrego un menu provisional para navegar de forma mas sencilla dentro de la app
+- Se eliminaron las propiedades de la versión anterior, generaban muchas consultas a la bd
+
 Log martes 19 de marzo 2013
 ==========================================
 
