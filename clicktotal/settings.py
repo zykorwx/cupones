@@ -139,8 +139,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'dajaxice',
-    'dajax',
     'social_auth',
     'south',
     'endless_pagination',

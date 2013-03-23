@@ -27,8 +27,11 @@ urlpatterns = patterns('',
     url(r'^empresa/login$', 'empresa.views.login_empresa'),
     url(r'^empresa/admin$', 'empresa.views.login_empresa'),
     url(r'^empresa/admin/(?P<empresa>\d+)$', 'empresa.views.admin_empresa'),
+    url(r'^empresa/promo/(?P<promocion_id>\d+)$', 'empresa.views.promoEmpresa'),
     url(r'^empresa/cerrar$', 'empresa.views.logout_empresa'),
     url(r'^empresa/registro/(?P<id_empresa>\d+)$', 'empresa.views.nuevo_user_empresa'),
+# Ajax
+    url(r'^ajax/confPromocion/(?P<id_conf>\d+)$', 'empresa.views.ajaxConfEmpresa'),
 # Urls Cupon
     url(r'^promocion/nueva/$', 'cupon.views.nueva_promocion'),
     url(r'^cupon/nuevo/(?P<id_promocion>\d+)$', 'cupon.views.nuevo_cupon'),

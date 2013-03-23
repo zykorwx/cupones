@@ -15,6 +15,10 @@ class PromocionForm(ModelForm):
     class Meta:
         model = Promocion
         exclude = ('fecha_creacion',)
-        widgets = {
-            'password': forms.PasswordInput(),
-        }
+
+
+class PromocionEmpresaForm(ModelForm):
+    class Meta:
+        model = Promocion
+        exclude = ('fecha_creacion', 'id_empresa',)
+

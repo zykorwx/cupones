@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Promocion " %} {{ promo.id }} {% endblock %}
+
+{% block lateral %} 
+<nav>
+  <ul>
+    <li><a href="/"> {% trans "Regresar" %} </a></li>
+  </ul>
+</nav>
+{% endblock %}
+
+
+
+
+
+{% block contenido %}
+
+		<script type="text/javascript">
+			$(function() {
+				$("#id_fecha_publicacion").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true });
+				$("#id_fecha_termino").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true  });
+			});
+		</script>
+
+
+<script> 
+$(document).ready(function(){
+	$(" #id_confPromocion").on( "click", function( event ) {
+  	if ($('#id_confPromocion').val() == 0) 
+  	{
+  		$('#mensaje_field').text('Tienes que seleccionar un tipo de promocion')
+  	}
+  	else
+  	{
+        $.ajax({
+            type: "GET",
+            url: '/ajax/confPromocion/{{ promo.confPromocion.id }}',
+            processData: false,
+            dataType: "json",
+            success: function(data){
+                $.each(data, function(key, value){
+                    if (value['nombre'] != undefined){
+                    $('#mensaje_field').text('')
+                    $('#mensaje_field').append(
+                    'El tipo de promocion seleccionado es: <b>' + value['nombre'] + '</b><br> Con un precio por cupon de: <b>' + value['precio_x_cupon'] + '</b>')
+                    	
+                	}
+        		});
+    		}
+        });
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="one mobile half padded">
+		<span class="special">{% trans "Promocion " %} {{ promo.id }}</span>
+		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
+			{{formulario.as_p}}
+			<p><button class="large">{% trans "Guardar" %} <i class="icon-pencil"></i></button></p>
+		</form>
+	</div>  
+	<div class="one mobile half padded">
+		<h2>{% trans "Promocion " %}{{ promo.id }}</h2>
+		<p id="mensaje_field">Modifique los datos que crea pertinentes y presione en guardar.</p>
+    </div>
+</div>
+
+{% endblock %}
+
