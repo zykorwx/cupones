@@ -61,7 +61,7 @@
   {% for peri in periodo  %}
     {% ifchanged peri.id_promocion.id %} 
       <tr>
-        <td><a class="tooltip"  href='/empresa/admin/promo/{{peri.id_promocion.id}}' title='Promocion con id: {{peri.id_promocion.id}}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+        <td><a class="tooltip"  href='/empresa/promo/{{peri.id_promocion.id}}' title='Promocion con id: {{peri.id_promocion.id}}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
         <td>{{peri.id_promocion.cupones}}</td>
       </tr>
     {% endifchanged %}
@@ -72,7 +72,7 @@
   {% for promo in promos  %}
   {% ifchanged promo.id_promocion.id %} 
   <tr>
-    <td><a class="tooltip"  href='/empresa/admin/promo/{{promo.id_promocion.id}}' title='Promocion con id: {{promo.id_promocion.id}}' ><img src='{{MEDIA_URL}}{{ promo.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+    <td><a class="tooltip"  href='/empresa/promo/{{promo.id_promocion.id}}' title='Promocion con id: {{promo.id_promocion.id}}' ><img src='{{MEDIA_URL}}{{ promo.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
     <td>{{promo.id_promocion.cupones}}</td>
   </tr>
   {% endifchanged %}

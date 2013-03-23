@@ -3,6 +3,11 @@
 
 {% block tittle %} {% trans "Promocion " %} {{ promo.id }} {% endblock %}
 
+{% block head %}
+	<script type="text/javascript" src='{{STATIC_URL}}js/empresa/promoEmpresa.js' charset="UTF-8"></script>
+{% endblock %}
+
+
 {% block lateral %} 
 <nav>
   <ul>
@@ -14,19 +19,27 @@
 
 
 
-
 {% block contenido %}
-
-		<script type="text/javascript">
-			$(function() {
-				$("#id_fecha_publicacion").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true });
-				$("#id_fecha_termino").datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true  });
-			});
-		</script>
-
-
-<script> 
+<script type="text/javascript">
 $(document).ready(function(){
+calendario();
+mensajes();
+	$(" #id_imagen").mouseover(function( event ) {
+		if ($('#id_imagen').val() == ""){
+  			var url = '{{MEDIA_URL}}{{ promo.imagen }}'
+    		$('#mensaje_field').html(' <b> La imagen actual es: </b></p> <img src='+url+' width=\u0022150\u0022 height=\u0022100\u0022 alt=\u0022promocion\u0022 />  ')
+  		}
+  		else
+  		{
+	  		$('#mensaje_field').html(' Guarde la nueva imagen para poder mostrarla  ')
+  		}
+  	});
+
+});
+</script>
+
+<script type="text/javascript">
+   $(document).ready(function(){
 	$(" #id_confPromocion").on( "click", function( event ) {
   	if ($('#id_confPromocion').val() == 0) 
   	{
@@ -41,36 +54,18 @@ $(document).ready(function(){
             dataType: "json",
             success: function(data){
                 $.each(data, function(key, value){
-                    if (value['nombre'] != undefined){
-                    $('#mensaje_field').text('')
-                    $('#mensaje_field').append(
-                    'El tipo de promocion seleccionado es: <b>' + value['nombre'] + '</b><br> Con un precio por cupon de: <b>' + value['precio_x_cupon'] + '</b>')
-                    	
-                	}
-        		});
-    		}
+                    if (value['nombre'] != undefined)
+                    {
+                      $('#mensaje_field').text('')
+                      $('#mensaje_field').append('El tipo de promocion seleccionado es: <b>' + value['nombre'] + '</b><br> Con un precio por cupon de: <b>$ ' + value['precio_x_cupon'] + '</b>')	
+                    }
+        		    });
+    		    }
         });
-    }
+      }
+    });
   });
-});
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="row">
 	<div class="one mobile half padded">
@@ -81,7 +76,7 @@ $(document).ready(function(){
 		</form>
 	</div>  
 	<div class="one mobile half padded">
-		<h2>{% trans "Promocion " %}{{ promo.id }}</h2>
+		<h2>{% trans "Instrucciones " %}</h2>
 		<p id="mensaje_field">Modifique los datos que crea pertinentes y presione en guardar.</p>
     </div>
 </div>
