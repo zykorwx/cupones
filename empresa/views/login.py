@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 from empresa.forms import LoginEmpresaForm
 from empresa.models import UserEmpresa
 
@@ -12,14 +13,18 @@ def login_empresa(request):
 		if request.method=='POST':
 			formulario = LoginEmpresaForm(request.POST)
 			if formulario.is_valid():
-				user1 = UserEmpresa.objects.get(user=request.POST.get('user',''))
-				if user1.password == request.POST.get('password'):
+				try:
+					user1 = UserEmpresa.objects.get(user=request.POST.get('user',''))
+					if user1.password == request.POST.get('password'):
 						request.session['empresa_id'] = user1.empresa.id
 						request.session['empresa_nombre'] = user1.empresa
 						return HttpResponseRedirect('/empresa/admin/%s' % request.session.get('empresa_id'))
+				except  ObjectDoesNotExist:
+					formulario = LoginEmpresaForm()
+					return render_to_response('empresas/login_empresa.html', {'formulario':formulario}, context_instance=RequestContext(request))
 		else:
 			formulario = LoginEmpresaForm()
-			return render_to_response('empresas/login_empresa.html', {'formulario':formulario}, context_instance=RequestContext(request))
+		return render_to_response('empresas/login_empresa.html', {'formulario':formulario}, context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/empresa/admin/%s' % request.session.get('empresa_id'))
 
