@@ -1,5 +1,5 @@
 # -*- coding: utf-8 *-*
-from cupon.models import Promocion, Cupon
+from cupon.models import Promocion, Cupon, ConfPromocion
 from empresa.models import Empresa, UserEmpresa
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
@@ -26,4 +26,5 @@ admin.site.register(Promocion)
 admin.site.register(Empresa)
 admin.site.register(UserEmpresa)
 admin.site.register(Cupon)
+admin.site.register(ConfPromocion)
 
