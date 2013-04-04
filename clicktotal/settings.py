@@ -139,13 +139,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'tastypie',
     'social_auth',
     'south',
     'endless_pagination',
     'empresa',
     'cupon',
     'usuario',
-
 )
 
 # A sample logging configuration. The only tangible logging

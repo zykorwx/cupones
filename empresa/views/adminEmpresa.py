@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.db.models import Max, Sum
-from cupon.models import Cupon
+from cupon.models import Cupon, Promocion
 from empresa.models import pagoEmpresa
 from empresa.decorators import login_empresa_required
 
@@ -32,13 +32,14 @@ def admin_empresa(request, empresa):
 
 def calculaPago(empresa_id):
 	ultimoPago = pagoEmpresa.objects.filter(empresa=empresa_id).aggregate(Max('fecha_pago'))
+	promos1 = Promocion.objects.filter(id_empresa = empresa_id)
 	promos = Cupon.objects.filter(id_promocion__id_empresa=empresa_id)
 	precio = 0
 	infoPago = []
 	if ultimoPago['fecha_pago__max']==None:
 		aux = promos.aggregate(Sum('id_promocion__confPromocion__precio_x_cupon'))
 		precio = aux['id_promocion__confPromocion__precio_x_cupon__sum']
-		infoPago.append(promos)
+		infoPago.append(promos1)
 		infoPago.append(precio)
 		infoPago.append(promos.count())
 		infoPago.append(False)
@@ -52,5 +53,5 @@ def calculaPago(empresa_id):
 		infoPago.append(periodo)
 		infoPago.append(precio)
 		infoPago.append(periodo.count())
-		infoPago.append(promos)
+		infoPago.append(promos1)
 		return infoPago

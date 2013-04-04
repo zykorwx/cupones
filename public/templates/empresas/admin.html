@@ -6,8 +6,9 @@
 {% block lateral %} 
 <nav>
   <ul>
+    <li><a href='/empresa/nueva_promocion/{{ request.session.empresa_id }}'> {% trans "Agregar promocion" %} </a></li>
     <li><a href="/"> {% trans "Regresar" %} </a></li>
-    <li><a href="/empresa/cerrar"> {% trans "Cerrar sesion" %} </a></li>
+    <li><a href="/empresa/cerrar" class="warning message"> {% trans "Cerrar sesion" %} </a></li>
   </ul>
 </nav>
 {% endblock %}
@@ -39,6 +40,22 @@
     <th scope="col"><span class="special">Promociones</span></th>
     <th scope="col"><span class="special">Cupones</span></th>
   </tr>
+
+
+{% if promos == False  %}
+  {% for peri in periodo  %}
+    {% if peri.cupones != 0 %}
+      {% ifchanged peri.id  %} 
+        <tr>
+          <td><a class="tooltip"  href='/empresa/promo/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+          <td>{{peri.cupones}}</td>
+        </tr>
+      {% endifchanged %}
+    {% endif %}
+  {% endfor %}
+
+{% else  %}
+
 {% for peri in periodo  %}
   {% ifchanged peri.id_promocion.id %} 
   <tr>
@@ -47,6 +64,15 @@
   </tr>
   {% endifchanged %}
 {% endfor %}
+
+{% endif %}
+
+
+
+
+
+
+
 </table>
   </div>
   <div id="tab-2">
@@ -59,10 +85,10 @@
   </tr>
 {% if promos == False  %}
   {% for peri in periodo  %}
-    {% ifchanged peri.id_promocion.id %} 
+    {% ifchanged peri.id %} 
       <tr>
-        <td><a class="tooltip"  href='/empresa/promo/{{peri.id_promocion.id}}' title='Promocion con id: {{peri.id_promocion.id}}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-        <td>{{peri.id_promocion.cupones}}</td>
+        <td><a class="tooltip"  href='/empresa/promo/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+        <td>{{peri.cupones}}</td>
       </tr>
     {% endifchanged %}
   {% endfor %}
@@ -70,10 +96,10 @@
 {% else  %}
 
   {% for promo in promos  %}
-  {% ifchanged promo.id_promocion.id %} 
+  {% ifchanged promo.id %} 
   <tr>
-    <td><a class="tooltip"  href='/empresa/promo/{{promo.id_promocion.id}}' title='Promocion con id: {{promo.id_promocion.id}}' ><img src='{{MEDIA_URL}}{{ promo.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-    <td>{{promo.id_promocion.cupones}}</td>
+    <td><a class="tooltip"  href='/empresa/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+    <td>{{promo.cupones}}</td>
   </tr>
   {% endifchanged %}
   {% endfor %}

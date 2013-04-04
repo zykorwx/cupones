@@ -11,7 +11,8 @@
 {% block lateral %} 
 <nav>
   <ul>
-    <li><a href="/"> {% trans "Regresar" %} </a></li>
+    <li><a href="/"> {% trans "ir a inicio" %} </a></li>
+    <li><a href="/empresa/admin"> {% trans "regresar al administrador" %} </a></li>
   </ul>
 </nav>
 {% endblock %}
@@ -24,18 +25,18 @@
 $(document).ready(function(){
 calendario();
 mensajes();
-	$(" #id_imagen").mouseover(function( event ) {
-		if ($('#id_imagen').val() == ""){
+// set up variables
+	$(" #id_imagen").ready(function( event ) {
   			var url = '{{MEDIA_URL}}{{ promo.imagen }}'
-    		$('#mensaje_field').html(' <b> La imagen actual es: </b></p> <img src='+url+' width=\u0022150\u0022 height=\u0022100\u0022 alt=\u0022promocion\u0022 />  ')
-  		}
-  		else
-  		{
-	  		$('#mensaje_field').html(' Guarde la nueva imagen para poder mostrarla  ')
-  		}
+    		$('#div_imagen').html(' <b> La imagen actual es: </b><br><img id="preview" src='+url+' width=\u0022150\u0022 height=\u0022100\u0022 alt=\u0022promocion\u0022 /> ')
   	});
-
 });
+
+
+
+
+
+
 </script>
 
 <script type="text/javascript">
@@ -67,6 +68,39 @@ mensajes();
   });
 </script>
 
+<script type="text/javascript">
+ $(document).ready(function(){
+ 
+  
+$(" #id_imagen").on( "change", function( event ) {
+
+            if (document.getElementById('id_imagen').files && document.getElementById('id_imagen').files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+        var url = '{{MEDIA_URL}}{{ promo.imagen }}'
+        var url2 = e.target.result
+        var html = '<div class="row"> '+
+                      '<div class="one mobile third"> '+
+                        '<img src='+url+' width=\u0022150\u0022 height=\u0022100\u0022 alt=\u0022imagen\u0022 />'+
+                        '<b>Imagen actual</b>'+
+                      '</div>'+
+                      '<div class="one mobile third"> '+
+                        '<img id="preview" src='+url2+ ' width=\u0022150\u0022 height=\u0022100\u0022 alt=\u0022imagen\u0022 />'+
+                        '<b>Nueva imagen</b>'+
+                      '</div>'+
+                  '</div>'          
+      $('#div_imagen').html(html)
+
+                }
+
+                reader.readAsDataURL(document.getElementById('id_imagen').files[0]);
+            }
+
+});
+});
+</script>
+
+
 <div class="row">
 	<div class="one mobile half padded">
 		<span class="special">{% trans "Promocion " %} {{ promo.id }}</span>
@@ -76,9 +110,16 @@ mensajes();
 		</form>
 	</div>  
 	<div class="one mobile half padded">
-		<h2>{% trans "Instrucciones " %}</h2>
-		<p id="mensaje_field">Modifique los datos que crea pertinentes y presione en guardar.</p>
+    <div class="row">
+      <h2>{% trans "Imagen " %}</h2>
+      <div id="div_imagen"></div>
     </div>
+    <div class="row">
+    <br><br>
+		  <h2>{% trans "Instrucciones " %}</h2>
+		  <p id="mensaje_field">Modifique los datos que crea pertinentes y presione en guardar.</p>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
