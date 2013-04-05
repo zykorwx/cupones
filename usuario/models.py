@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cupon.models import Cupon
 import os
 # Create your models here.
 
@@ -16,9 +15,6 @@ class Perfil(models.Model):
 		return "%s's profile" % self.user
 
 
-class HistorialCupones(models.Model):
-	user = models.ForeignKey(User)
-	cupon = models.ForeignKey(Cupon)
 
 
 # Capturar el avatar de nuevos usuarios

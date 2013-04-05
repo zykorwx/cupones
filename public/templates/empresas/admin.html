@@ -2,6 +2,71 @@
 {% load i18n %}
 
 {% block tittle %} {% trans "Administrador de empresas " %}  {% endblock %}
+{% block head %}
+
+<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"> </script>
+
+
+
+
+      <script>
+
+// WAMP session object
+var sess = null;
+ 
+window.onload = function() {
+ 
+   var wsuri;
+   if (window.location.protocol === "file:") {
+      wsuri = "ws://zykorwx.no-ip.org:9000";
+   } else {
+      wsuri = "ws://zykorwx.no-ip.org:9000";
+   }
+ 
+   // connect to WAMP server
+   ab.connect(wsuri,
+ 
+      // WAMP session was established
+      function (session) {
+ 
+         sess = session;
+ 
+         console.log("Connected to " + wsuri);
+         test();
+      },
+ 
+      // WAMP session is gone
+      function (code, reason) {
+ 
+         sess = null;
+ 
+         if (code == ab.CONNECTION_UNSUPPORTED) {
+            window.location = "http://autobahn.ws/unsupportedbrowser";
+         } else {
+            console.log(reason);
+         }
+      }
+   );
+};
+ 
+function test() {
+    sess.subscribe("http://clicktotal.com.mx/notifica#"+ '{{ request.session.empresa_id }}', onEvent);
+}
+ 
+function onEvent(topicUri, event) {
+   console.log(topicUri);
+   console.log(event);
+   $(document).ready(function(){
+    var obj = jQuery.parseJSON(event);
+    var row = $("<tr><td>"+obj.notificacion.cupon+"</td><td>"+obj.notificacion.fecha+"</td> <td>"+obj.notificacion.user+"</td></tr>");
+    $(".tabla_noti tbody").prepend(row);
+
+   });
+}
+       </script>
+
+
+ {% endblock %}
 
 {% block lateral %} 
 <nav>
@@ -23,6 +88,26 @@
 	<div class="one mobile half padded">		
     <p>El total de cupones que has expedido en este periodo es: <span class="success message"> {{ total }}</span></p> 
     <p>Tu saldo actual es: <span class="success message"> ${{ pago }}</span></p> 
+    <div id="log">
+    <table class="tabla_noti">
+      <thead>
+      <tr>
+        <th scope="col">Cupon</th>
+        <th scope="col">Fecha de creacion</th>
+        <th scope="col">Usuario que lo solicito</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for cupon in cupones  %}
+        <tr>
+          <td>{{cupon.num_cupon}} </td>
+          <td>{{cupon.fecha_creacion}}</td>
+          <td>{{cupon.user}}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+    </table>
+    </div>
 	</div>  
 
 	<div class="one mobile half padded">

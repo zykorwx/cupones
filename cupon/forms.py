@@ -1,6 +1,5 @@
 #encoding:utf-8
 from django.forms import ModelForm
-from django import forms
 from models import Promocion, Cupon
 
 
@@ -8,13 +7,8 @@ from models import Promocion, Cupon
 class CuponForm(ModelForm):
 	class Meta:
 		model = Cupon
-		exclude = ('id_promocion', 'num_cupon', 'fecha_creacion',)
+		exclude = ('id_promocion', 'num_cupon', 'fecha_creacion', 'canjeado', 'user')
 
-# Se genera el form para crear una nueva promocion
-class PromocionForm(ModelForm):
-    class Meta:
-        model = Promocion
-        exclude = ('fecha_creacion',)
 
 
 class PromocionEmpresaForm(ModelForm):

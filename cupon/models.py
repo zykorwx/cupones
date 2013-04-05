@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Max
 from empresa.models import Empresa, pagoEmpresa
+from django.contrib.auth.models import User
 
 # Se usa para usarlo en un combo
 ESTADO_CHOICES = (
@@ -52,7 +53,10 @@ class Promocion(models.Model):
 class Cupon(models.Model):
 	id_promocion = models.ForeignKey(Promocion, verbose_name=_('Promocion del cupon'))
 	num_cupon = models.CharField(max_length=10, verbose_name=_('Codigo unico del cupon'))
+	user = models.ForeignKey(User)
+	canjeado = models.BooleanField(default=False) 
 	fecha_creacion = models.DateTimeField(auto_now=True)
+
 
 	# Muestra el id de la promocion junto al numero de cupon generado
 	def __unicode__(self):

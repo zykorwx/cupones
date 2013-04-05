@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from forms import CuponForm, PromocionForm
 from models import Promocion, Cupon
+from django.contrib.auth.models import User
 import string
 import random
 
@@ -32,7 +33,8 @@ def nuevo_cupon(request, id_promocion):
 		if request.method == 'POST':
 			formulario = CuponForm(request.POST)
 			if formulario.is_valid():
-				cupon = Cupon(id_promocion=promociones, num_cupon=id_generator())			
+				user_id = User.objects.get(pk=request.user.id) 
+				cupon = Cupon(id_promocion=promociones, num_cupon=id_generator(), user = user_id)			
 				cupon.save()
 				return HttpResponseRedirect('/cupon/mostrar/%s' % cupon.id)
 		else:

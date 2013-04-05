@@ -34,7 +34,6 @@ urlpatterns = patterns('',
 # Ajax
     url(r'^ajax/confPromocion/(?P<id_conf>\d+)$', 'empresa.views.ajaxConfEmpresa'),
 # Urls Cupon
-    url(r'^promocion/nueva/$', 'cupon.views.nueva_promocion'),
     url(r'^cupon/nuevo/(?P<id_promocion>\d+)$', 'cupon.views.nuevo_cupon'),
     url(r'^cupon/mostrar/(?P<id_cupon>\d+)$', 'cupon.views.mostrar_cupon'),
 )

@@ -2,6 +2,61 @@
 {% load i18n %}
 
 {% block tittle %} {% trans "Este es tu nuevo cupon" %} {% endblock %}
+{% block head %}
+      <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"> </script>
+
+<script>
+
+// WAMP session object
+var sess = null;
+ 
+window.onload = function() {
+ 
+   var wsuri;
+   if (window.location.protocol === "file:") {
+      wsuri = "ws://zykorwx.no-ip.org:9000";
+   } else {
+      wsuri = "ws://zykorwx.no-ip.org:9000";
+   }
+ 
+   // connect to WAMP server
+   ab.connect(wsuri,
+ 
+      // WAMP session was established
+      function (session) {
+ 
+         sess = session;
+ 
+         console.log("Connected to " + wsuri);
+         publishEvent();
+      },
+ 
+      // WAMP session is gone
+      function (code, reason) {
+ 
+         sess = null;
+ 
+         if (code == ab.CONNECTION_UNSUPPORTED) {
+            window.location = "http://autobahn.ws/unsupportedbrowser";
+         } else {
+            console.log(reason);
+         }
+      }
+   );
+};
+ 
+
+ 
+function publishEvent() {
+   html = '{"notificacion":{ "cupon":"{{ cupon.num_cupon }}", \n"fecha":"{{ cupon.fecha_creacion }}", \n"user":"{{ user.username }}"  }}'
+   sess.publish("http://clicktotal.com.mx/notifica#" + '{{ cupon.id_promocion.id_empresa.id }}', html);
+}
+
+
+
+</script>
+
+{% endblock %}
 
 {% block lateral %} 
 <nav>
