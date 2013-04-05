@@ -3,24 +3,12 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-from forms import CuponForm, PromocionForm
+from forms import CuponForm
 from models import Promocion, Cupon
 from django.contrib.auth.models import User
 import string
 import random
 
-# Esta es la vista para generar una nueva promocion.
-@staff_member_required
-def nueva_promocion(request):
-    if request.method == 'POST':
-    	formulario = PromocionForm(request.POST, request.FILES)
-    	if formulario.is_valid():
-    		formulario.save()
-    		return HttpResponseRedirect('')
-    else:
-    	formulario = PromocionForm()
-    return render_to_response('cupon/form_promocion.html', {'formulario':formulario}, context_instance=RequestContext(request))
 
 # Para generar un nuevo cupon los usuarios deben estar conectados
 # se usua un link interno solo para mover a los usuarios a la parte de login.

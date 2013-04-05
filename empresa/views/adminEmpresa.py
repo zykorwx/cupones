@@ -6,11 +6,7 @@ from django.db.models import Max, Sum
 from cupon.models import Cupon, Promocion
 from empresa.models import pagoEmpresa
 from empresa.decorators import login_empresa_required
-import sys
-from twisted.python import log
-from twisted.internet import reactor
-from autobahn.websocket import connectWS
-from autobahn.wamp import WampClientFactory, WampClientProtocol
+
 
 
 # El administrador solo puede entrar una empresa logeada, si no lo esta se redirecciona a logearse
@@ -69,30 +65,3 @@ def cuponesValidos(empresa_id):
 	ayer = hoy - relativedelta(days=1)
 	periodo = Cupon.objects.filter(fecha_creacion__range=(ayer,hoy), id_promocion__id_empresa=empresa_id).order_by('-fecha_creacion')	
 	return periodo
-
-
-class PubSubClient1(WampClientProtocol):
- 
-   def onSessionOpen(self):
-      self.subscribe("http://clicktotal.com.mx/notifica#", self.onSimpleEvent)
-      self.sendSimpleEvent()
- 
-   def onSimpleEvent(self, topicUri, event):
-      print "Event", topicUri, event
- 
-   def sendSimpleEvent(self):
-      self.publish("http://clicktotal.com.mx/notifica#", "Hello!")
-      reactor.callLater(2, self.sendSimpleEvent)
- 
- 
-if __name__ == '__main__':
- 
-   log.startLogging(sys.stdout)
-   debug = len(sys.argv) > 1 and sys.argv[1] == 'debug'
- 
-   factory = WampClientFactory("ws://zykorwx.no-ip.org:9000", debugWamp = debug)
-   factory.protocol = PubSubClient1
- 
-   connectWS(factory)
- 
-   reactor.run()
