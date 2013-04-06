@@ -20,7 +20,7 @@ def admin_empresa(request, empresa):
 			pago = aux[1]
 			total = aux[2]
 			promos = aux[3]
-			return render_to_response('empresas/admin.html', {'periodo': periodo, 'pago': pago, 'total': total, 'promos': promos}, context_instance=RequestContext(request))
+			return render_to_response('empresas/admin.html', {'periodo': periodo, 'pago': pago, 'total': total, 'promos': promos, 'cupones':mostrarCupones}, context_instance=RequestContext(request))
 		else:
 			periodo = aux[0]
 			pago = aux[1]
