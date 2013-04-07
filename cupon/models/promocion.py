@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models import Max
 from empresa.models import Empresa, pagoEmpresa
 from django.contrib.auth.models import User
+import os
 
 
 
@@ -28,6 +29,9 @@ class ConfPromocion(models.Model):
 	class Meta:
 		app_label = 'cupon'
 
+def get_image_path(promocion, filename):
+    return os.path.join('imagenes/empresas/emp_'+str(promocion.id_empresa), 'promociones', filename)
+
 # Create your models here.
 class Promocion(models.Model):
 	id_empresa = models.ForeignKey(Empresa, verbose_name=_('Empresa o negocio'))
@@ -37,7 +41,7 @@ class Promocion(models.Model):
 	num_limite = models.SmallIntegerField(blank=True, null=True, verbose_name=_('Numero limite de cupones'))
 	estado = models.CharField(max_length=1, choices=ESTADO_CHOICES, verbose_name=_('Estado'), default='0')
 	activo = models.CharField(max_length=1,  default='0')
-	imagen = models.ImageField(upload_to='promociones', verbose_name='Imagen promocion')
+	imagen = models.ImageField(upload_to=get_image_path, verbose_name='Imagen promocion')
 	descripcion = models.TextField(verbose_name=_('Descripcion de la promocion'))
 	confPromocion = models.ForeignKey(ConfPromocion, verbose_name=_('Tipo promocion:'))
 

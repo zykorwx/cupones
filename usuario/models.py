@@ -5,7 +5,7 @@ import os
 
 
 def get_image_path(perfil, filename):
-    return os.path.join('avatar', str(perfil.user.username), filename)
+    return os.path.join('imagenes/usuarios/usr_'+perfil.user.username, 'avatar', filename)
 
 class Perfil(models.Model):
 	user = models.OneToOneField(User)
