@@ -25,5 +25,5 @@ Thumbs.db
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/public/upload/avatar
-/public/upload/promociones
+/public/upload/imagenes/*
+
