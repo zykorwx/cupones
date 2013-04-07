@@ -44,7 +44,7 @@ mensajes();
 	$(" #id_confPromocion").on( "click", function( event ) {
   	if ($('#id_confPromocion').val() == 0) 
   	{
-  		$('#mensaje_field').text('Tienes que seleccionar un tipo de promocion')
+  		$('#mensaje_field').html('<p class="warning message">Tienes que seleccionar un tipo de promocion</p>')
   	}
   	else
   	{
@@ -57,8 +57,8 @@ mensajes();
                 $.each(data, function(key, value){
                     if (value['nombre'] != undefined)
                     {
-                      $('#mensaje_field').text('')
-                      $('#mensaje_field').append('El tipo de promocion seleccionado es: <b>' + value['nombre'] + '</b><br> Con un precio por cupon de: <b>$ ' + value['precio_x_cupon'] + '</b>')	
+                      $('#mensaje_field').html('<p class="important message">El tipo de promocion seleccionado es: <span class="success message">' + value['nombre'] + 
+                        '</span>  <span class="success message">$ ' + value['precio_x_cupon'] + '</span> por cupon generado. </p>')	
                     }
         		    });
     		    }
