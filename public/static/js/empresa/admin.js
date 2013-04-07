@@ -10,10 +10,11 @@
 
   mensajes = function(){
 	$(" #id_fecha_publicacion").on( "click", function( event ) {
-  	$('#mensaje_field').text('Introduzca la fecha en que desea que se publique la promocion. Este campo se puede dejar vacio.')});
+  	$('#mensaje_field').text(' <p class="important message">Introduzca la fecha en que desea que se publique automaticamente la promocion. Este campo se puede dejar vacio.</p>' )});
 
   $(" #id_fecha_termino").on( "click", function( event ) {
-    $('#mensaje_field').text('Introduzca la fecha en que desea que termine la promocion. Este campo se puede dejar vacio.')});
+    $('#mensaje_field').text('<p class="important message">Introduzca la fecha en que desea que termine la promocion. La promocion desaparecera el dia indicado a  las 11:59 pm' +
+                             'Este campo se puede dejar vacio. </p>')});
 
   $(" #id_num_limite").on( "click", function( event ) {
     $('#mensaje_field').html('Introduzca el numero limite de cupones que desea dar. Este campo se puede dejar vacio. <cite>Puede combinar el numero de cupones con la fecha de publicacion y fecha limite </cite>')});

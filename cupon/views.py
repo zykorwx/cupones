@@ -17,7 +17,7 @@ import random
 def nuevo_cupon(request, id_promocion):
 	promociones = Promocion.objects.get(pk=id_promocion)
 	cupones = Cupon.objects.filter(id_promocion=id_promocion).count()
-	if not cupon_limite(promociones, cupones):
+	if  promociones.validar_promocion_a_mostrar() == True:
 		if request.method == 'POST':
 			formulario = CuponForm(request.POST)
 			if formulario.is_valid():
@@ -41,11 +41,3 @@ def mostrar_cupon(request, id_cupon):
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for x in range(size))
 
-# Este metodo valida el numero de cupones actuales y restantes
-def cupon_limite(promocion, actual):
-	if promocion.num_limite == actual:
-		promocion.estado = 0
-		promocion.save()
-		return True
-	else:
-		return False

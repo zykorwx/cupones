@@ -65,6 +65,17 @@ mensajes();
         });
       }
     });
+
+
+
+  $(" #id_fecha_termino").on( "change", function( event ) {
+    validaFecha();
+  });
+  $(" #id_fecha_publicacion").on( "change", function( event ) {
+    validaFecha();
+  });
+
+
   });
 </script>
 
@@ -117,7 +128,7 @@ $(" #id_imagen").on( "change", function( event ) {
     <div class="row">
     <br><br>
 		  <h2>{% trans "Instrucciones " %}</h2>
-		  <p id="mensaje_field">Modifique los datos que crea pertinentes y presione en guardar.</p>
+		  <div id="mensaje_field">Modifique los datos que crea pertinentes y presione en guardar.</div>
     </div>
   </div>
 </div>

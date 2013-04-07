@@ -62,7 +62,12 @@ function onEvent(topicUri, event) {
     var obj = jQuery.parseJSON(event);
     var row = $("<tr><td>"+obj.notificacion.cupon+"</td><td>"+obj.notificacion.fecha+"</td> <td>"+obj.notificacion.user+"</td></tr>");
     $(".tabla_noti tbody").prepend(row);
-
+    totalCuponesActual = parseFloat($("#total").text())
+    $("#total").text(totalCuponesActual + 1)
+    precioActual = parseFloat($("#pago").text())
+    precioCupon = parseFloat(obj.notificacion.precio)
+    total = precioCupon + precioActual
+    $("#pago").text(total)
    });
 }
        </script>
@@ -98,8 +103,8 @@ function onEvent(topicUri, event) {
 
 <div class="row">
 	<div class="one mobile half padded">		
-    <p>El total de cupones que has expedido en este periodo es: <span class="success message"> {{ total }}</span></p> 
-    <p>Tu saldo actual es: <span class="success message"> ${{ pago }}</span></p> 
+    <p>El total de cupones que has expedido en este periodo es: <span class="success message"><span id="total"> {{ total }}</span></span></p> 
+    <p>Tu saldo actual es: <span class="success message"> $ <span id="pago">{{ pago }}</span></span></p> 
     <div id="log">
     <div id="busqueda">
       <input type="text" id="q" name="q" value="" placeholder="Escribe aqui para buscar dentro de la tabla …" />

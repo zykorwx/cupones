@@ -20,7 +20,9 @@ def promoEmpresa(request, promo_id):
 	if request.method == 'POST':
 		formulario = PromocionEmpresaForm(request.POST, request.FILES, instance=promo) # El instance para instanciar la info que traiga promo
 		if formulario.is_valid():
-			formulario.save()
+			aux = formulario.save(commit=False)
+			aux.save()
+			aux.validar_promocion_a_mostrar()
 			return HttpResponseRedirect('/empresa/admin')
 	else:
 		formulario = PromocionEmpresaForm(instance=promo)
@@ -39,6 +41,7 @@ def nuevaPromo(request, empresa_id):
 			aux = formulario.save(commit=False)
 			aux.id_empresa = empresa
 			aux.save()
+			aux.validar_promocion_a_mostrar()
 			return HttpResponseRedirect('/empresa/admin')
 	else:
 		formulario = PromocionEmpresaForm()

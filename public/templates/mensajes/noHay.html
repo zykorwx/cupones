@@ -1,11 +1,9 @@
 {% extends 'base/base.html' %}
 {% load i18n %}
-{% load dajaxice_templatetags %}
+
 
 {% block tittle %} {% trans "Se han terminado :(" %} {% endblock %}
-{% block head %} 
-	{% dajaxice_js_import %}
-{% endblock %}
+
 
 {% block lateral %} 
 <nav>
@@ -34,7 +32,7 @@
 	</div>  
 	<div class="one mobile half padded">
 		<h3><span class="special">Aun hay mas</span></h3>
-		<p><b>Promociones</b>Esto seguro fue solo un contratiempo, pero sigue buscando en la pagina y encontraras igual o mejores promociones.</p>
+		<p><b>Promociones</b> Esto seguro fue solo un contratiempo, pero sigue buscando en la pagina y encontraras igual o mejores promociones.</p>
 		<p><b>Aumentar </b>Gracias por tu confianza, seguiremos trabajando para darte el mejor servicio.</p>
     </div>
 </div>

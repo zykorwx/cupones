@@ -48,7 +48,7 @@ window.onload = function() {
 
  
 function publishEvent() {
-   html = '{"notificacion":{ "cupon":"{{ cupon.num_cupon }}", \n"fecha":"{{ cupon.fecha_creacion }}", \n"user":"{{ user.username }}"  }}'
+   html = '{"notificacion":{ "cupon":"{{ cupon.num_cupon }}", \n"fecha":"{{ cupon.fecha_creacion }}", \n"user":"{{ user.username }}", \n"precio":"{{ cupon.id_promocion.confPromocion.precio_x_cupon}}"  }}'
    sess.publish("http://clicktotal.com.mx/notifica#" + '{{ cupon.id_promocion.id_empresa.id }}', html);
 }
 

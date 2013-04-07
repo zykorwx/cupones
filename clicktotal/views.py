@@ -11,7 +11,7 @@ from endless_pagination.decorators import page_template
 def index(
         request, template='clicktotal/index.html', extra_context=None):
 	context = {
-    'promociones': Promocion.objects.filter(estado = 1),
+    'promociones': Promocion.objects.filter(estado = 1, activo = "1"),
     }
         if extra_context is not None:
     	    context.update(extra_context)
