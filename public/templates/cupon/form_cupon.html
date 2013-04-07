@@ -14,7 +14,10 @@
 {% block blog %}
 	<p class="important message">Cupones generados: <span class="success message">{{ cupones }}</span>
 	{% if promociones.num_limite == None %}
-		Sin limite de cupones a generar! Aprovecha!!
+		Sin limite de cupones a generar! Aprovecha!!.
+		{% if promociones.fecha_termino != None %}
+				Tienes hasta el <span class="success message"> {{ promociones.fecha_termino }}</span> para conseguir la promocion
+		{% endif %}
 	{% else %}
 		De:  <span class="success message">{{ promociones.num_limite }}</span>
 	{% endif %}
