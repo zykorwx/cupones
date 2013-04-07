@@ -16,10 +16,13 @@
 	{% if promociones.num_limite == None %}
 		Sin limite de cupones a generar! Aprovecha!!.
 		{% if promociones.fecha_termino != None %}
-				Tienes hasta el <span class="success message"> {{ promociones.fecha_termino }}</span> para conseguir la promocion
+				Tienes hasta: <span class="success message"> {{ promociones.fecha_termino }}</span> para conseguir cupones de la promocion.
 		{% endif %}
 	{% else %}
 		De:  <span class="success message">{{ promociones.num_limite }}</span>
+		{% if promociones.fecha_termino != None %}
+				O hasta: <span class="success message"> {{ promociones.fecha_termino }}</span> para conseguir cupones de la promocion.
+		{% endif %}
 	{% endif %}
 
 	</p>
