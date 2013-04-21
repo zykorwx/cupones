@@ -18,7 +18,7 @@ ESTADO_CHOICES = (
 
 
 
-# Confuguracion de las promociones: por ahora solo maneja el precio.
+# Configuracion de las promociones: por ahora solo maneja el precio.
 class ConfPromocion(models.Model):
 	nombre = models.CharField(max_length=15, verbose_name=_(u'Nombre de configuracion'))
 	precio_x_cupon = models.DecimalField(max_digits=6, decimal_places=2, verbose_name=_(u'Monto por cupon'))

@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     'empresa',
     'cupon',
     'usuario',
+    'tags',
 )
 
 # A sample logging configuration. The only tangible logging

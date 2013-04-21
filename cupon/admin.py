@@ -28,3 +28,7 @@ admin.site.register(UserEmpresa)
 admin.site.register(Cupon)
 admin.site.register(ConfPromocion)
 
+
+
+
+

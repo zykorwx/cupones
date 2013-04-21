@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Mostrando los cupones de la promocion del presente periodo" %}  {% endblock %}
+{% block head %}
+<script type="text/javascript" src='{{STATIC_URL}}js/jquery.uitablefilter.js'></script>
+
+    <script language="javascript">
+    $(function() {
+      theTable = $(".promos");
+      $("#q").keyup(function() {
+      $.uiTableFilter(theTable, this.value);
+      });
+    });
+    </script>
+
+{% endblock %}
+
+{% block lateral %} 
+<nav>
+  <ul>
+    <li><a href='/empresa/nueva_promocion/{{ request.session.empresa_id }}'> {% trans "Agregar promocion" %} </a></li>
+    <li><a href="/empresa/admin"> {% trans "regresar al administrador" %} </a></li>
+    <li><a href="/"> {% trans "Inicio" %} </a></li>
+    <li><a href="/empresa/cerrar" class="warning message"> {% trans "Cerrar sesion" %} </a></li>
+  </ul>
+</nav>
+{% endblock %}
+
+{% block blog %}
+  <h1>Mostrando cupones de la promocion <span class="special-1">{{ promocion }}</span></h1>
+  <p>En este espacion se muestran todos los cupones que se han tramitado durante el periodo actual.</p>
+{% endblock %}
+
+{% block contenido %}
+
+<div id="busqueda">
+  <input type="text" id="q" name="q" value="" placeholder="Escribe aqui para buscar dentro de la tabla …" />
+</div>
+<table class="promos">
+  <tr>
+    <th scope="col"><span class="special">Cupon</span></th>
+    <th scope="col"><span class="special">fecha de creacion</span></th>
+    <th scope="col"><span class="special">Usuario que lo genero</span></th>
+  </tr>
+  {% for cupon in cupones  %}
+      <tr>
+        <td> {{ cupon.num_cupon }} </td>
+        <td>{{cupon.fecha_creacion}}</td>
+        <td>{{cupon.user}}</td>
+      </tr>
+  {% endfor %}
+
+</table>
+
+{% endblock %}

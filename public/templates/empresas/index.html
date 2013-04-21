@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Inicio de sesion de empresas" %} {% endblock %}
+
+{% block lateral %} 
+<nav>
+  <ul>
+    <li><a href="/"> {% trans "Regresar" %} </a></li>
+  </ul>
+</nav>
+{% endblock %}
+
+
+
+
+
+{% block contenido %}
+
+<div class="row">
+	<div class="one mobile half padded">
+		<span class="special">{% trans "Inico de sesion empresa" %}</span>
+
+	</div>  
+	<div class="one mobile half padded">
+		<h2>{% trans "Iniciar sesion Empresa" %}</h2>
+		<p>Escriba los datos de login  de la empresa, disfruta la pagina para administrar tus cupones.</p>
+    </div>
+</div>
+
+{% endblock %}

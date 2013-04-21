@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 from django.http import HttpResponseRedirect
 
 class login_empresa_required(object):

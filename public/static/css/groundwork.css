@@ -46,3 +46,20 @@ display: block;
   height: 500px;
   overflow-y: scroll;
 }
+
+
+div #busqueda #q{
+    padding-left: 10px;
+    text-decoration: none;
+    border-radius: 5px; /*up to date browsers support this, but you can add prefixes if you want*/
+
+}
+
+#q:hover {
+    padding-left: 10px;
+    text-decoration: none;
+    background-repeat: repeat-x;
+    border-radius: 5px; /*up to date browsers support this, but you can add prefixes if you want*/
+    background-color: #99CCFF;
+
+}

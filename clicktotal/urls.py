@@ -23,14 +23,16 @@ urlpatterns = patterns('',
 # Urls Usuario
     url(r'^cerrar/$', 'usuario.views.cerrar'),
 # Urls Empresa
-    url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'),
-    url(r'^empresa/login$', 'empresa.views.login_empresa'),
-    url(r'^empresa/admin$', 'empresa.views.login_empresa'),
-    url(r'^empresa/admin/(?P<empresa>\d+)$', 'empresa.views.admin_empresa'),
-    url(r'^empresa/promo/(?P<promo_id>\d+)$', 'empresa.views.promoEmpresa'),
-    url(r'^empresa/nueva_promocion/(?P<empresa_id>\d+)$', 'empresa.views.nuevaPromo'),
-    url(r'^empresa/cerrar$', 'empresa.views.logout_empresa'),
-    url(r'^empresa/registro/(?P<id_empresa>\d+)$', 'empresa.views.nuevo_user_empresa'),
+    url(r'^empresas$', 'empresa.views.indexEmpresa'), # agregar nueva empresa
+    url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'), # agregar nueva empresa
+    url(r'^empresa/login$', 'empresa.views.login_empresa'), # Login empresa
+    url(r'^empresa/admin$', 'empresa.views.login_empresa'), # Admin de la empresa
+    url(r'^empresa/admin/(?P<empresa>\d+)$', 'empresa.views.admin_empresa'), # Admin de la empresa
+    url(r'^empresa/promo/(?P<promo_id>\d+)$', 'empresa.views.promoEmpresa'), # Mostrar promocion de la empresa
+    url(r'^empresa/cupones/(?P<empresa_id>\d+)/(?P<promocion_id>\d+)$', 'empresa.views.mostrar_cupones'), # Mostrar los cupones de la promocion de la empresa
+    url(r'^empresa/nueva_promocion/(?P<empresa_id>\d+)$', 'empresa.views.nuevaPromo'), # Nueva promocion
+    url(r'^empresa/cerrar$', 'empresa.views.logout_empresa'), # Cerrar sesion de la empresa
+    url(r'^empresa/registro/(?P<id_empresa>\d+)$', 'empresa.views.nuevo_user_empresa'), # Agregar nueva empresa
 # Ajax
     url(r'^ajax/confPromocion/(?P<id_conf>\d+)$', 'empresa.views.ajaxConfEmpresa'),
 # Urls Cupon

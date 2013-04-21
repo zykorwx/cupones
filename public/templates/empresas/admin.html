@@ -152,7 +152,7 @@ function onEvent(topicUri, event) {
     {% if peri.cupones != 0 %}
       {% ifchanged peri.id  %} 
         <tr>
-          <td><a class="tooltip"  href='/empresa/promo/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+          <td><a class="tooltip"  href='/empresa/cupones/{{peri.id_empresa.id}}/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
           <td>{{peri.cupones}}</td>
         </tr>
       {% endifchanged %}
@@ -164,7 +164,7 @@ function onEvent(topicUri, event) {
 {% for peri in periodo  %}
   {% ifchanged peri.id_promocion.id %} 
   <tr>
-    <td><a class="tooltip"  href='/empresa/promo/{{peri.id_promocion.id}}' title='Promocion con id: {{ peri.id_promocion.id }}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+    <td><a class="tooltip"  href='/empresa/cupones/{{peri.id_promocion.id_empresa.id}}/{{peri.id_promocion.id}}' title='Promocion con id: {{ peri.id_promocion.id }}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
     <td>{{ peri.id_promocion.cuponesPeriodo }}</td>
   </tr>
   {% endifchanged %}

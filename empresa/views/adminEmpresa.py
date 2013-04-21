@@ -9,6 +9,8 @@ from empresa.decorators import login_empresa_required
 
 
 
+
+
 # El administrador solo puede entrar una empresa logeada, si no lo esta se redirecciona a logearse
 @login_empresa_required(login_url='/empresa/login')
 def admin_empresa(request, empresa):
