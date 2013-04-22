@@ -1,8 +1,6 @@
 #encoding:utf-8
 from django.conf.urls import patterns, url, include
 from django.conf import settings
-from dajaxice.core import dajaxice_autodiscover, dajaxice_config
-dajaxice_autodiscover()
 from django.contrib import admin
 admin.autodiscover()
 
@@ -14,8 +12,6 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
     {'document_root': settings.MEDIA_ROOT, }
     ),
-# Dajaxice en caso de necesitar ajax en un futuro
-	url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
 # Login Facebook, Twitter
 	url(r'', include('social_auth.urls')),
 # Urls clicktotal
