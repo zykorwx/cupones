@@ -3,41 +3,35 @@
 
 {% block tittle %} {% trans "Generar nuevo cupon" %} {% endblock %}
 
-{% block lateral %} 
-<nav>
-  <ul>
-    <li><a href="/"> {% trans "Regresar" %} </a></li>
-  </ul>
-</nav>
-{% endblock %}
 
 {% block blog %}
-	<p class="important message">Cupones generados: <span class="success message">{{ cupones }}</span>
+	<div class="alert alert-info"> <p class="important message">Cupones generados: <span class="text-error">{{ cupones }}</span>
 	{% if promociones.num_limite == None %}
 		Sin limite de cupones a generar! Aprovecha!!.
 		{% if promociones.fecha_termino != None %}
-				Tienes hasta: <span class="success message"> {{ promociones.fecha_termino }}</span> para conseguir cupones de la promocion.
+				Tienes hasta: <span class="text-error"> {{ promociones.fecha_termino }}</span> para conseguir cupones de la promocion.
 		{% endif %}
 	{% else %}
-		De:  <span class="success message">{{ promociones.num_limite }}</span>
+		De:  <span class="text-error">{{ promociones.num_limite }}</span>
 		{% if promociones.fecha_termino != None %}
-				O hasta: <span class="success message"> {{ promociones.fecha_termino }}</span> para conseguir cupones de la promocion.
+				O hasta: <span class="text-error"> {{ promociones.fecha_termino }}</span> para conseguir cupones de la promocion.
 		{% endif %}
 	{% endif %}
 
 	</p>
+</div>
 {% endblock %}
 
 {% block contenido %}
-<div class="row">
-	<div class="one mobile half padded">
-		<img src='{{MEDIA_URL}}{{ promociones.imagen }}' width="400" height="300" alt="Cupon" />
+<div class="row-fluid">
+	<div class="span5">
+		<img class="img-polaroid" src='{{MEDIA_URL}}{{ promociones.imagen }}' width="400" height="300" alt="Cupon" />
 		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 			{{formulario.as_p}}
-			<p><button class="large">{% trans "Generar cupon" %} <i class="icon-heart"></i></button></p>
+			<p><button class="btn btn-large btn-success">{% trans "Generar cupon" %} <i class="icon-signin"></i></button></p>
 		</form>
 	</div>  
-	<div class="one mobile half padded">
+	<div class="span4 offset2">
 		<div class="row">
 		<h3><span class="special">Descripcion</span></h3>
 		<p> {{  promociones.descripcion  }}  </p>

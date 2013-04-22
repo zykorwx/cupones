@@ -3,29 +3,21 @@
 
 {% block tittle %} {% trans "Nueva empresa" %} {% endblock %}
 
-{% block lateral %} 
-<nav>
-  <ul>
-    <li><a href="/"> {% trans "Regresar" %} </a></li>
-  </ul>
-</nav>
-{% endblock %}
-
 
 
 
 
 {% block contenido %}
 
-<div class="row">
-	<div class="one mobile half padded">
-		<span class="special">{% trans "Nueva empresa" %}</span>
+<div class="row-fluid">
+	<div class="span5">
+		<h2 class="text-info">{% trans "Nueva empresa" %}</h2>
 		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 			{{formulario.as_p}}
-			<p><button class="large">{% trans "Agregar" %} <i class="icon-plus"></i></button></p>
+			<p><button class="btn btn-large btn-success">{% trans "Agregar" %} <i class="icon-plus"></i></button></p>
 		</form>
 	</div>  
-	<div class="one mobile half padded">
+	<div class="span4">
 		<h2>{% trans "Agregar Empresa" %}</h2>
 		<p>Escriba los datos de la empresa entre mas campos llenos mejor, hay que darle la bienvenida a nuestro nuevo cliente.</p>
     </div>

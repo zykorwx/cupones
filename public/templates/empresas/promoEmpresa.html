@@ -9,12 +9,16 @@
 
 
 {% block lateral %} 
-<nav>
-  <ul>
-    <li><a href="/"> {% trans "ir a inicio" %} </a></li>
-    <li><a href="/empresa/admin"> {% trans "regresar al administrador" %} </a></li>
-  </ul>
-</nav>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/empresa/login">Administrador</a>
+    <ul class="nav">
+      <li ><a href='/empresa/nueva_promocion/{{ request.session.empresa_id }}'> {% trans "Agregar promocion" %} </a></li>
+      <li><a href="/"> {% trans "Inicio" %} </a></li>
+      <li><a href="/empresa/cerrar" class="warning message"> {% trans "Cerrar sesion" %} </a></li>
+    </ul>
+  </div>
+</div>
 {% endblock %}
 
 
@@ -112,15 +116,15 @@ $(" #id_imagen").on( "change", function( event ) {
 </script>
 
 
-<div class="row">
-	<div class="one mobile half padded">
-		<span class="special">{% trans "Promocion " %} {{ promo.id }}</span>
+<div class="row-fluid">
+	<div class="span6">
+		<h2>{% trans "Promocion " %} {{ promo.id }}</h2>
 		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 			{{formulario.as_p}}
-			<p><button class="large">{% trans "Guardar" %} <i class="icon-pencil"></i></button></p>
+			<p><button class="btn btn-large btn-success">{% trans "Guardar" %} <i class="icon-pencil"></i></button></p>
 		</form>
 	</div>  
-	<div class="one mobile half padded">
+	<div class="span4">
     <div class="row">
       <h2>{% trans "Imagen " %}</h2>
       <div id="div_imagen"></div>

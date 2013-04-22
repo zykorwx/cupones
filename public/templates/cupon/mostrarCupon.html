@@ -58,42 +58,31 @@ function publishEvent() {
 
 {% endblock %}
 
-{% block lateral %} 
-<nav>
-  <ul>
-    <li><a href="/"> {% trans "Regresar" %} </a></li>
-  </ul>
-</nav>
-{% endblock %}
+
 
 
 {% block contenido %}
-<div class="row">
-	<div class="one mobile half padded">
-			<h1><span class="special">Tu cupon es:</span></h1>
-			<h2>{{ cupon.num_cupon }}</h2>
+<div class="row-fluid">
+	<div class="span6">
+			<h2>Tu cupon es:</h2>
+			<h1 class="text-info">{{ cupon.num_cupon }}</h1>
 	<p>Tu cupon sera valido hasta 24 horas despues de: <b>{{ cupon.fecha_creacion }}</b> </p>		
 	<p>Copia tu cupon y entregalo a la empresa o negocio correspondiente y disfruta de los beneficios de tu cupon.</p>
 	</div>  
-	<div class="one mobile half padded">
-		<p><span class="special">Empresa: {{ cupon.id_promocion.id_empresa.nombre }} </span></p>
-		<h4>Direccion</h4>
+	<div class="span3">
+		<h2 class="text-info"> {{ cupon.id_promocion.id_empresa.nombre }} </h2>
+		<h3 class="text-info">Direccion</h3>
 		<p><b>Calle:</b> {{ cupon.id_promocion.id_empresa.calle }}<br>
 		<b>Numero exterior:</b> {{ cupon.id_promocion.id_empresa.num_exterior }}&nbsp;&nbsp;<b>Numero interior:</b>{{ cupon.id_promocion.id_empresa.num_interior }}<br>
 		<b>Colonia:</b> {{ cupon.id_promocion.id_empresa.colonia }}<br>
 		<b>Municipio o delegacion:</b> {{ cupon.id_promocion.id_empresa.municipio }}<br>
 		<b>Estado:</b> {{ cupon.id_promocion.id_empresa.estado }}</p>
-		<h4>Informacion de contacto</h4>
+		<h3 class="text-info">Contacto</h3>
 		<p><b>Telefono:</b> {{ cupon.id_promocion.id_empresa.telefono }}<br>
 		<b>Email:</b> {{ cupon.id_promocion.id_empresa.email }}<br>
 		<b>Pagina web:</b> {{ cupon.id_promocion.id_empresa.pagina_web }}</p>
     </div>
 </div>
-
-
-
-
-
 
 
 

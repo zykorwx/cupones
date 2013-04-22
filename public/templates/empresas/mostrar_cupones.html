@@ -7,7 +7,7 @@
 
     <script language="javascript">
     $(function() {
-      theTable = $(".promos");
+      theTable = $(".table table-striped");
       $("#q").keyup(function() {
       $.uiTableFilter(theTable, this.value);
       });
@@ -17,14 +17,16 @@
 {% endblock %}
 
 {% block lateral %} 
-<nav>
-  <ul>
-    <li><a href='/empresa/nueva_promocion/{{ request.session.empresa_id }}'> {% trans "Agregar promocion" %} </a></li>
-    <li><a href="/empresa/admin"> {% trans "regresar al administrador" %} </a></li>
-    <li><a href="/"> {% trans "Inicio" %} </a></li>
-    <li><a href="/empresa/cerrar" class="warning message"> {% trans "Cerrar sesion" %} </a></li>
-  </ul>
-</nav>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/empresa/login">Administrador</a>
+    <ul class="nav">
+      <li ><a href='/empresa/nueva_promocion/{{ request.session.empresa_id }}'> {% trans "Agregar promocion" %} </a></li>
+      <li><a href="/"> {% trans "Inicio" %} </a></li>
+      <li><a href="/empresa/cerrar" class="warning message"> {% trans "Cerrar sesion" %} </a></li>
+    </ul>
+  </div>
+</div>
 {% endblock %}
 
 {% block blog %}
@@ -37,7 +39,7 @@
 <div id="busqueda">
   <input type="text" id="q" name="q" value="" placeholder="Escribe aqui para buscar dentro de la tabla …" />
 </div>
-<table class="promos">
+<table class="table table-striped">
   <tr>
     <th scope="col"><span class="special">Cupon</span></th>
     <th scope="col"><span class="special">fecha de creacion</span></th>

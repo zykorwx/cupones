@@ -13,35 +13,37 @@
 
 
 {% block lateral %} 
+<div class="container">
     {% if user.is_authenticated %}
-        <h3><img src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> <span class="special">{{ user.username }}</span></h3>
-        <a class="button" href="/cerrar" title="Cerrar">Cerrar sesion</a> 
+        <h3 class="text-info" ><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> {{ user.username }}</h3>
+        <a class="btn" href="/cerrar" title="Cerrar">Cerrar sesion</a> 
     {% else %}
         <a name="iniciaSesion"></a>
-        <h1><span class="special">Inicia sesion</span></h1>
+        <h3 class="text-info">Inicia sesion</h4>
         {% load url from future %}
             <p>
-                <a class="social-icon facebook large tooltip" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook">Facebook</a> &nbsp;&nbsp;
-                <a class="social-icon twitter large tooltip" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter">Twitter</a>
+                <a class="icon-facebook-sign icon-3x" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook"></a> &nbsp;&nbsp;
+                <a class="icon-twitter-sign icon-3x" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter"></a>
             </p>
     {% endif %}
+
         <hr>
+</div>
 {% endblock %}
 
 {% block blog %}
-
+<div class="container">
 <h1><span class="special">ClickTotal</span></h1>
         <p align="justify">Tenemos los mejores descuentos y promociones para ti y tus amigos. Si quieres ahorrar o no te alcanza para comprar algo, busca tu descuento aqui, entre mas cupones uses, mejores descuentos encontraras en la pagina. Compartela con tus
         amigos y familiares. Disfruta los descuentos y promociones que tenemos para ti. </p>
-        <hr/>
+        <hr/></div>
  {% endblock %}
 {% block contenido %}
-
+<div class="container">
 {% include page_template %}
 
 {% block js %}
     {{ block.super }}
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="{{ STATIC_URL }}endless_pagination/js/endless-pagination.js"></script>
     <script>
         $.endlessPaginate({
@@ -50,8 +52,7 @@
         });
     </script>
 {% endblock %}
-
-
-
+<hr class="featurette-divider"/>
+</div>
  {% endblock %}
 

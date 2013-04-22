@@ -3,32 +3,21 @@
 
 {% block tittle %} {% trans "Inicio de sesion de empresas" %} {% endblock %}
 
-{% block lateral %} 
-<nav>
-  <ul>
-    <li><a href="/"> {% trans "Regresar" %} </a></li>
-  </ul>
-</nav>
-{% endblock %}
-
-
-
-
 
 {% block contenido %}
 
-<div class="row">
-	<div class="one mobile half padded">
-		<span class="special">{% trans "Inico de sesion empresa" %}</span>
+<div class="row-fluid">
+	<div class="span9">
+		<h2 class="text-info">{% trans "Iniciar sesion Empresa" %}</h2>
+		<p>Escriba los datos de login  de la empresa, disfruta la pagina para administrar tus promociones.</p>
 		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
 			{{formulario.as_p}}
-			<p><button class="large">{% trans "Aceptar" %} <i class="icon-plus"></i></button></p>
+			<p><button class="btn btn-large btn-success">{% trans "Aceptar" %} <i class="icon-plus"></i></button></p>
 		</form>
 	</div>  
-	<div class="one mobile half padded">
-		<h2>{% trans "Iniciar sesion Empresa" %}</h2>
-		<p>Escriba los datos de login  de la empresa, disfruta la pagina para administrar tus cupones.</p>
-    </div>
+
+
+
 </div>
 
 {% endblock %}
