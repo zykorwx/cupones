@@ -7,7 +7,7 @@
 
     <script language="javascript">
     $(function() {
-      theTable = $(".table table-striped");
+      theTable = $("#tabla-1");
       $("#q").keyup(function() {
       $.uiTableFilter(theTable, this.value);
       });
@@ -39,7 +39,7 @@
 <div id="busqueda">
   <input type="text" id="q" name="q" value="" placeholder="Escribe aqui para buscar dentro de la tabla …" />
 </div>
-<table class="table table-striped">
+<table id="tabla-1" class="table table-striped">
   <tr>
     <th scope="col"><span class="special">Cupon</span></th>
     <th scope="col"><span class="special">fecha de creacion</span></th>

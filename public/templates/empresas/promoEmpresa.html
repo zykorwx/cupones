@@ -31,7 +31,7 @@ calendario();
 mensajes();
 // set up variables
 	$(" #id_imagen").ready(function( event ) {
-  			var url = '{{MEDIA_URL}}{{ promo.imagen }}'
+  			var url = '"{{MEDIA_URL}}{{ promo.imagen }}"'
     		$('#div_imagen').html(' <b> La imagen actual es: </b><br><img id="preview" src='+url+' width=\u0022150\u0022 height=\u0022100\u0022 alt=\u0022promocion\u0022 /> ')
   	});
 });
@@ -92,7 +92,7 @@ $(" #id_imagen").on( "change", function( event ) {
             if (document.getElementById('id_imagen').files && document.getElementById('id_imagen').files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-        var url = '{{MEDIA_URL}}{{ promo.imagen }}'
+        var url = '"{{MEDIA_URL}}{{ promo.imagen }}"'
         var url2 = e.target.result
         var html = '<div class="row"> '+
                       '<div class="one mobile third"> '+
