@@ -12,7 +12,6 @@
                     {% else %}
                     <a class="thumbnail" href='/cupon/nuevo/{{dato1.id}}' title="Elije el cupon que mas te guste" ><img src='{{MEDIA_URL}}{{ dato1.imagen }}'  width="1700" height="900" alt="cupon" /></a>
                 {% endif %}
-                      </div>
                 </div>
             {% else %}
             <div class="row-fluid">
@@ -22,7 +21,8 @@
                     {% else %}
                     <a class="thumbnail" href='/cupon/nuevo/{{dato1.id}}' title="Elije el cupon que mas te guste" ><img src='{{MEDIA_URL}}{{ dato1.imagen }}' width="1700" height="900" alt="cupon" /></a>
                 {% endif %}
-              </div>   
+              </div>  
+              </div>  
             {% endif %}
         {% endfor %}
 {% show_more %}

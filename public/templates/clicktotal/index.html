@@ -2,24 +2,15 @@
 {% load i18n %}
 {% block tittle %} {% trans "Cupones de Descuentos!" %} {% endblock %}
 
-{% block slider %} 
-      <div class="slider">
-        <img src="http://placehold.it/1200x400/24cada/ffffff&amp;text=El+mejor+pagado" alt=""/>
-        <img src="http://placehold.it/1200x400/bada55/ffffff&amp;text=El+segundo+mejor+pagado" alt=""/>
-        <img src="http://placehold.it/1200x400/c82647/ffffff&amp;text=El+tercero+mejor+pagado" alt=""/>
-        <img src="http://placehold.it/1200x400/198d98/ffffff&amp;text=El+cuarto+mejor+pagado" alt=""/>
-      </div>
-{% endblock %}
 
 
 {% block lateral %} 
-<div class="container">
     {% if user.is_authenticated %}
         <h3 class="text-info" ><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> {{ user.username }}</h3>
         <a class="btn" href="/cerrar" title="Cerrar">Cerrar sesion</a> 
     {% else %}
         <a name="iniciaSesion"></a>
-        <h3 class="text-info">Inicia sesion</h4>
+        <h3 class="text-info">Inicia sesion</h3>
         {% load url from future %}
             <p>
                 <a class="icon-facebook-sign icon-3x" href="{% url 'socialauth_begin' 'facebook' %}" title="Facebook"></a> &nbsp;&nbsp;
@@ -28,18 +19,16 @@
     {% endif %}
 
         <hr>
-</div>
 {% endblock %}
 
 {% block blog %}
-<div class="container">
+
 <h1><span class="special">ClickTotal</span></h1>
         <p align="justify">Tenemos los mejores descuentos y promociones para ti y tus amigos. Si quieres ahorrar o no te alcanza para comprar algo, busca tu descuento aqui, entre mas cupones uses, mejores descuentos encontraras en la pagina. Compartela con tus
         amigos y familiares. Disfruta los descuentos y promociones que tenemos para ti. </p>
-        <hr/></div>
+        <hr/>
  {% endblock %}
 {% block contenido %}
-<div class="container">
 {% include page_template %}
 
 {% block js %}
@@ -52,7 +41,5 @@
         });
     </script>
 {% endblock %}
-<hr class="featurette-divider"/>
-</div>
  {% endblock %}
 

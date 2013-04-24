@@ -120,120 +120,105 @@ $('#tab-2').click(function (e) {
     <p>El total de cupones que has expedido en este periodo es: <span class="success message"><span class="label label-info"> {{ total }}</span></span></p> 
     <p>Tu saldo actual es: <span class="success message"> $ <span class="label label-info">{{ pago }}</span></span></p> 
 
-    <div id="log">
-    <div id="busqueda">
-      <input type="text" id="q" name="q" value="" placeholder="Escribe aqui para buscar dentro de la tabla …" />
-    </div>
-    <table class="table table-striped">
+      <div id="log">
+        <div id="busqueda">
+          <input type="text" id="q" name="q" value="" placeholder="Escribe aqui para buscar dentro de la tabla …" />
+        </div>
+      <table class="table table-striped">
       <thead>
-      <tr>
-        <th scope="col">Cupon</th>
-        <th scope="col">Fecha de creacion</th>
-        <th scope="col">Usuario que lo solicito</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for cupon in cupones  %}
+        <tr>
+          <th scope="col">Cupon</th>
+          <th scope="col">Fecha de creacion</th>
+          <th scope="col">Usuario que lo solicito</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for cupon in cupones  %}
         <tr>
           <td>{{cupon.num_cupon}} </td>
           <td>{{cupon.fecha_creacion}}</td>
           <td>{{cupon.user}}</td>
         </tr>
-    {% endfor %}
-  </tbody>
-    </table>
-</div>  
+      {% endfor %}
+      </tbody>
+      </table>
+      </div>  
   </div>
 
 
 
   <div class="span5 offset1">
-  <div class="tabs">
-  <ul class="nav nav-tabs">
-    <li><a href="#tab-1"  data-toggle="tab" class="active">Mostrar cupones de periodo</a></li>
-    <li><a data-toggle="tab" href="#tab-2">Mostrar todas mis promociones</a></li>
-  </ul>
-  <div class="tab-content">
-  <div id="tab-1" class="tab-pane active">
-    <h3>Mostrar cupones</h3>
-    <p>Aqui se muestran el numero de cupones que se han canjeado por promocion, en el presente periodo. Si das click en alguna promocion veras la informacion de los cupones canjeados.</p>
-<table class="table table-striped">
-  <tr>
-    <th scope="col"><span class="special">Promociones</span></th>
-    <th scope="col"><span class="special">Cupones</span></th>
-  </tr>
-
-
-{% if promos == False  %}
-  {% for peri in periodo  %}
-    {% if peri.cupones != 0 %}
-      {% ifchanged peri.id  %} 
-        <tr>
-          <td><a href='/empresa/cupones/{{peri.id_empresa.id}}/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-          <td>{{peri.cupones}}</td>
-        </tr>
-      {% endifchanged %}
-    {% endif %}
-  {% endfor %}
-
-{% else  %}
-
-{% for peri in periodo  %}
-  {% ifchanged peri.id_promocion.id %} 
-  <tr>
-    <td><a href='/empresa/cupones/{{peri.id_promocion.id_empresa.id}}/{{peri.id_promocion.id}}' title='Promocion con id: {{ peri.id_promocion.id }}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-    <td>{{ peri.id_promocion.cuponesPeriodo }}</td>
-  </tr>
-  {% endifchanged %}
-{% endfor %}
-
-{% endif %}
-
-
-
-
-
-
-
-</table>
-  </div>
-  <div id="tab-2" class="tab-pane">
-    <h3>Mostrar todas mis promociones</h3>
-    <p>Aquí se muestran todas tus promociones, y el número total de cupones canjeados por promoción. Si das click en alguna promoción podrás modificar sus valores.</p>
-<table class="table table-striped">
-  <tr>
-    <th scope="col"><span class="special">Promociones</span></th>
-    <th scope="col"><span class="special">Cupones</span></th>
-  </tr>
-{% if promos == False  %}
-  {% for peri in periodo  %}
-    {% ifchanged peri.id %} 
-      <tr>
-        <td><a href='/empresa/promo/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-        <td>{{peri.cupones}}</td>
-      </tr>
-    {% endifchanged %}
-  {% endfor %}
-
-{% else  %}
-
-  {% for promo in promos  %}
-  {% ifchanged promo.id %} 
-  <tr>
-    <td><a href='/empresa/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="150" height="100" alt="promocion" /></a></td>
-    <td>{{promo.cupones}}</td>
-  </tr>
-  {% endifchanged %}
-  {% endfor %}
-
-{% endif %}
-</table>
-  </div>
-</div>
-
-
+    <div class="tabs">
+    <ul class="nav nav-tabs">
+      <li><a href="#tab-1"  data-toggle="tab" class="active">Mostrar cupones de periodo</a></li>
+      <li><a data-toggle="tab" href="#tab-2">Mostrar todas mis promociones</a></li>
+    </ul>
+      <div class="tab-content">
+        <div id="tab-1" class="tab-pane active">
+          <h3>Mostrar cupones</h3>
+          <p>Aqui se muestran el numero de cupones que se han canjeado por promocion, en el presente periodo. Si das click en alguna promocion veras la informacion de los cupones canjeados.</p>
+          <table class="table table-striped">
+            <tr>
+              <th scope="col"><span class="special">Promociones</span></th>
+              <th scope="col"><span class="special">Cupones</span></th>
+            </tr>
+            {% if promos == False  %}
+              {% for peri in periodo  %}
+                {% if peri.cupones != 0 %}
+                  {% ifchanged peri.id  %} 
+                  <tr>
+                    <td><a href='/empresa/cupones/{{peri.id_empresa.id}}/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+                    <td>{{peri.cupones}}</td>
+                  </tr>
+                  {% endifchanged %}
+                {% endif %}
+              {% endfor %}
+            {% else  %}
+              {% for peri in periodo  %}
+                {% ifchanged peri.id_promocion.id %} 
+                <tr>
+                  <td><a href='/empresa/cupones/{{peri.id_promocion.id_empresa.id}}/{{peri.id_promocion.id}}' title='Promocion con id: {{ peri.id_promocion.id }}' ><img src='{{MEDIA_URL}}{{ peri.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+                  <td>{{ peri.id_promocion.cuponesPeriodo }}</td>
+                </tr>
+                {% endifchanged %}
+              {% endfor %}
+            {% endif %}
+          </table>
+        </div>
+        <div id="tab-2" class="tab-pane">
+          <h3>Mostrar todas mis promociones</h3>
+          <p>Aquí se muestran todas tus promociones, y el número total de cupones canjeados por promoción. Si das click en alguna promoción podrás modificar sus valores.</p>
+          <table class="table table-striped">
+            <tr>
+              <th scope="col"><span class="special">Promociones</span></th>
+              <th scope="col"><span class="special">Cupones</span></th>
+            </tr>
+            {% if promos == False  %}
+              {% for peri in periodo  %}
+                {% ifchanged peri.id %} 
+                <tr>
+                  <td><a href='/empresa/promo/{{peri.id}}' title='Promocion con id: {{peri.id}}' ><img src='{{MEDIA_URL}}{{ peri.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+                  <td>{{peri.cupones}}</td>
+                </tr>
+                {% endifchanged %}
+              {% endfor %}
+            {% else  %}
+              {% for promo in promos  %}
+                {% ifchanged promo.id %} 
+                <tr>
+                  <td><a href='/empresa/promo/{{promo.id}}' title='Promocion con id: {{promo.id}}' ><img src='{{MEDIA_URL}}{{ promo.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+                  <td>{{promo.cupones}}</td>
+                </tr>
+                {% endifchanged %}
+              {% endfor %}
+            {% endif %}
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
   
 {% endblock %}
 
