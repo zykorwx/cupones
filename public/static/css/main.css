@@ -10,6 +10,7 @@
 .dash .digit {
 	font-size: 55pt;
 	font-weight: bold;
+	margin-top: 32%;
 	float: left;
 	width: 55px;
 	text-align: center;
@@ -19,10 +20,12 @@
 }
 
 .dash_title {
+	width: 110px;
 	position: absolute;
+	text-align: center;
+	float: center;
 	display: block;
 	bottom: 0px;
-	right: 6px;
 	font-size: 9pt;
 	color: #555;
 	text-transform: uppercase;
