@@ -37,6 +37,11 @@ def mostrar_cupon(request, id_cupon):
 	cupon = Cupon.objects.get(pk=id_cupon)
 	return render_to_response('cupon/mostrarCupon.html', {'cupon': cupon}, context_instance=RequestContext(request))
 
+def canjear_cupon_inscripcion(request, id_cupon):
+	return render_to_response('cupon/inscripcion.html',  context_instance=RequestContext(request))
+
+
+
 # Este metodo lo unico que hace es generar un alfanumerico aleatorio de 6 digitos.
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for x in range(size))
