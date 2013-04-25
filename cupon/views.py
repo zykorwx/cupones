@@ -37,7 +37,7 @@ def mostrar_cupon(request, id_cupon):
 	cupon = Cupon.objects.get(pk=id_cupon)
 	return render_to_response('cupon/mostrarCupon.html', {'cupon': cupon}, context_instance=RequestContext(request))
 
-def canjear_cupon_inscripcion(request, id_cupon):
+def canjear_cupon_inscripcion(request):
 	return render_to_response('cupon/inscripcion.html',  context_instance=RequestContext(request))
 
 

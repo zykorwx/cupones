@@ -34,7 +34,7 @@ urlpatterns = patterns('',
 # Urls Cupon
     url(r'^cupon/nuevo/(?P<id_promocion>\d+)$', 'cupon.views.nuevo_cupon'),
     url(r'^cupon/mostrar/(?P<id_cupon>\d+)$', 'cupon.views.mostrar_cupon'),
-    url(r'^cupon/canjear_cupon\d+)$', 'cupon.views.canjear_cupon_inscripcion'),
+    url(r'^cupon/canjear_cupon$', 'cupon.views.canjear_cupon_inscripcion'),
     
 )
 

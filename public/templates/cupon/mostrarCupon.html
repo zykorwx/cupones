@@ -68,6 +68,10 @@ function publishEvent() {
 			<h1 class="text-info">{{ cupon.num_cupon }}</h1>
 	<p>Tu cupon sera valido hasta 24 horas despues de: <b>{{ cupon.fecha_creacion }}</b> </p>		
 	<p>Copia tu cupon y entregalo a la empresa o negocio correspondiente y disfruta de los beneficios de tu cupon.</p>
+   <div class="span6 offset2">
+      <a class="btn btn-large btn-primary" href="/cupon/canjear_cupon" >Canjea tu cupon ahora!!!</a>
+   </div>
+
 	</div>  
 	<div class="span3">
 		<h2 class="text-info"> {{ cupon.id_promocion.id_empresa.nombre }} </h2>

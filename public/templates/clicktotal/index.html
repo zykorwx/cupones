@@ -2,9 +2,20 @@
 {% load i18n %}
 {% block tittle %} {% trans "Cupones de Descuentos!" %} {% endblock %}
 
+{% block head %}
 
+<script src='{{STATIC_URL}}js/jquery.lwtCountdown-1.0.js'></script>
+<link rel="Stylesheet" type="text/css" href='{{STATIC_URL}}css/main.css'></link>
+{% endblock %}
 
 {% block lateral %} 
+<div class="row-fluid show-grid">
+    <div class="span5">
+        <h3>Si ya cuentas con un cupon nuestro canjealo ahora!!  
+        <a class="btn btn-primary" href="/cupon/canjear_cupon" >Canjea tu cupon</a>
+        </h3>
+    </div>
+    <div class="span3 offset4">
     {% if user.is_authenticated %}
         <h3 class="text-info" ><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> {{ user.username }}</h3>
         <a class="btn" href="/cerrar" title="Cerrar">Cerrar sesion</a> 
@@ -17,15 +28,46 @@
                 <a class="icon-twitter-sign icon-3x" href="{% url 'socialauth_begin' 'twitter' %}" title="Twitter"></a>
             </p>
     {% endif %}
-
-        <hr>
+    </div>
+</div>
+    <hr>
 {% endblock %}
 
 {% block blog %}
 
 <h1><span class="special">ClickTotal</span></h1>
-        <p align="justify">Tenemos los mejores descuentos y promociones para ti y tus amigos. Si quieres ahorrar o no te alcanza para comprar algo, busca tu descuento aqui, entre mas cupones uses, mejores descuentos encontraras en la pagina. Compartela con tus
-        amigos y familiares. Disfruta los descuentos y promociones que tenemos para ti. </p>
+        <h3 align="justify">Esperanos faltan pocos dias para el lanzamiento. </h3>
+
+            <!-- Countdown dashboard start -->
+        <div id="countdown_dashboard">
+
+
+            <div class="dash days_dash">
+                <span class="dash_title">days</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+
+            <div class="dash hours_dash">
+                <span class="dash_title">hours</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+
+            <div class="dash minutes_dash">
+                <span class="dash_title">minutes</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+
+            <div class="dash seconds_dash">
+                <span class="dash_title">seconds</span>
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+
+        </div>
+        <!-- Countdown dashboard end -->    
         <hr/>
  {% endblock %}
 {% block contenido %}
@@ -41,5 +83,24 @@
         });
     </script>
 {% endblock %}
+
+
+
+        <script language="javascript" type="text/javascript">
+            jQuery(document).ready(function() {
+                $('#countdown_dashboard').countDown({
+                    targetDate: {
+                        'day':      6,
+                        'month':    5,
+                        'year':     2013,
+                        'hour':     0,
+                        'min':      0,
+                        'sec':      0
+                    }
+
+                });
+                $('#countdown_dashboard').startCountDown();
+            });
+        </script>
  {% endblock %}
 
