@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
-from models import Empresa, UserEmpresa
+from models import Empresa, UserEmpresa, pagoEmpresa
 from django import forms
 
 class EmpresaForm(ModelForm):
@@ -22,3 +22,9 @@ class UserEmpresaForm(ModelForm):
 class LoginEmpresaForm(forms.Form):
 	user = forms.CharField(max_length=20, label=_('Nombre de usuario'))
 	password = forms.CharField(max_length=20, label= _(u'Contraseña'), widget=forms.PasswordInput)
+
+
+class PagoEmpresaForm(ModelForm):
+	class Meta:
+		model = pagoEmpresa
+		exclude = ('empresa',)
