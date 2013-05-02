@@ -38,7 +38,11 @@ def mostrar_cupon(request, id_cupon):
 	return render_to_response('cupon/mostrarCupon.html', {'cupon': cupon}, context_instance=RequestContext(request))
 
 def canjear_cupon_inscripcion(request):
-	return render_to_response('cupon/inscripcion.html',  context_instance=RequestContext(request))
+	if request.user.is_staff  == False:
+		return render_to_response('cupon/inscripcion.html',  context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/empresa/nueva')
+
 
 
 

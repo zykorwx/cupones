@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 # Urls Empresa
     url(r'^empresas$', 'empresa.views.indexEmpresa'), # agregar nueva empresa
     url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'), # agregar nueva empresa
-    url(r'^empresa/pagos$', 'empresa.views.pago_Empresa'), # agregar nueva empresa
+    url(r'^empresa/pagos/(?P<empresa_id>\d+)$', 'empresa.views.pago_Empresa'), # agregar nueva empresa
     url(r'^empresa/login$', 'empresa.views.login_empresa'), # Login empresa
     url(r'^empresa/admin$', 'empresa.views.login_empresa'), # Admin de la empresa
     url(r'^empresa/admin/(?P<empresa>\d+)$', 'empresa.views.admin_empresa'), # Admin de la empresa

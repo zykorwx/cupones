@@ -27,4 +27,4 @@ class LoginEmpresaForm(forms.Form):
 class PagoEmpresaForm(ModelForm):
 	class Meta:
 		model = pagoEmpresa
-		exclude = ('empresa',)
+		exclude = ('empresa', 'cantidad', 'concepto', )

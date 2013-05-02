@@ -30,7 +30,7 @@ def nuevo_user_empresa(request, id_empresa):
 			if request.POST.get('password','') == request.POST.get('repite_password',''):
 				user_empresa = UserEmpresa(empresa_id=id_empresa, user=request.POST.get('user',''), password=request.POST.get('password',''))
 				user_empresa.save()
-				return HttpResponseRedirect('/')
+				return HttpResponseRedirect('/empresa/pagos/%s' % id_empresa)
 	else:
 		formulario = UserEmpresaForm()
 	return render_to_response('empresas/registro.html', {'formulario':formulario}, context_instance=RequestContext(request))

@@ -4,20 +4,35 @@
 {% block tittle %} {% trans "Pago empresa" %} {% endblock %}
 
 {% block contenido %}
-
-<div class="row-fluid">
-	<div class="span5">
-		<h2 class="text-info">{% trans "Pago empresa" %}</h2>
-		<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
-			{{formulario.as_p}}
-			<p><button class="btn btn-large btn-success">{% trans "Agregar" %} <i class="icon-plus"></i></button></p>
-		</form>
-	</div>  
-	<div class="span4">
-		<h2>{% trans "Historial pagos Empresa" %}</h2>
-		<p>Escriba los datos de la empresa entre mas campos llenos mejor, hay que darle la bienvenida a nuestro nuevo cliente.</p>
-    </div>
-</div>
+	{% if empresa.is_ins > 0 %}
+		<div class="row-fluid">
+			<div class="span4">
+				<h2 class="text-info">{% trans "Pago de mensualidad" %}</h2>
+				<h3>Monto $</h3> <div class="alert alert-success"><h2 ALIGN=center >00.00</h2></div>
+			</div>  
+			<div class="span7">
+				<br>
+				<br>
+				<h3 ALIGN=center>{% trans "Usted ya esta inscripto gracias." %}   </h2>
+		    </div>
+		</div>
+	{% else %}
+		<div class="row-fluid">
+			<div class="span4">
+				<h2 class="text-info">{% trans "Pago de mensualidad" %}</h2>
+				<h3>Monto $</h3> <div class="alert alert-success"><h2 ALIGN=center >{{ COSTO_INSCRIPCION }}</h2></div>
+				<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
+					{{formulario.as_p}}
+					<p><button class="btn btn-large btn-success">{% trans "Pagar" %} <i class="icon-plus"></i></button></p>
+				</form>
+			</div>  
+			<div class="span7">
+				<br>
+				<br>
+				<h3 ALIGN=center>{% trans "Realiza tu pago para obtener los grandes beneficios que te ofrecemos." %}</h2>
+		    </div>
+		</div>
+	{% endif %}
 
 {% endblock %}
 
