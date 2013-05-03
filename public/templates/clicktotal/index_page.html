@@ -4,28 +4,33 @@
     <br>
     
         <h2 class="header">Cupones Hoy</h2>
+        <div id="columns-cupons">
         {% for dato1 in promociones %}
             {% if forloop.counter|divisibleby:2 %}
-                <div class="span6">
+                <div class="pin-cupon"> 
                 {% if not user.is_authenticated %}
-                    <a class="thumbnail" href="#myModal" role="button" data-toggle="modal" title="Logeate para disfrutar de los descuentos." ><img src='{{MEDIA_URL}}{{ dato1.imagen }}' width="1700" height="900" alt="cupon" /></a>
-                   
-
+                    <a class="thumbnail" href="#myModal" role="button" data-toggle="modal" title="Logeate para disfrutar de los descuentos." ><img src='{{MEDIA_URL}}{{ dato1.imagen }}' alt="cupon" width="700" height="1000"  /></a>         
+                    <p>{{ dato1.descripcion }} </p> 
                     {% else %}
-                    <a class="thumbnail" href='/cupon/nuevo/{{dato1.id}}' title="Elije el cupon que mas te guste" ><img src='{{MEDIA_URL}}{{ dato1.imagen }}'  width="1700" height="900" alt="cupon" /></a>
+                    <a class="thumbnail" href='/cupon/nuevo/{{dato1.id}}' title="Elije el cupon que mas te guste" ><img src='{{MEDIA_URL}}{{ dato1.imagen }}'   alt="cupon" width="700" height="1000"  /></a>
+                    <p>{{ dato1.descripcion }} </p>
                 {% endif %}
                 </div>
             {% else %}
-            <div class="row-fluid">
-              <div class="span6">
+              <div class="pin-cupon"> 
                 {% if not user.is_authenticated %}
                 <!-- Button to trigger modal -->
-                    <a class="thumbnail" href="#myModal" role="button" data-toggle="modal" title="Logeate para disfrutar de los descuentos." ><img src='{{MEDIA_URL}}{{ dato1.imagen }}'  width="1700" height="900" alt="cupon" /></a>
+                    <a class="thumbnail" href="#myModal" role="button" data-toggle="modal" title="Logeate para disfrutar de los descuentos." ><img src='{{MEDIA_URL}}{{ dato1.imagen }}'   alt="cupon" width="700" height="1000"   /></a>
+                    <p>{{ dato1.descripcion }} </p>
                     {% else %}
-                    <a class="thumbnail" href='/cupon/nuevo/{{dato1.id}}' title="Elije el cupon que mas te guste" ><img src='{{MEDIA_URL}}{{ dato1.imagen }}' width="1700" height="900" alt="cupon" /></a>
+                    <a class="thumbnail" href='/cupon/nuevo/{{dato1.id}}' title="Elije el cupon que mas te guste" ><img src='{{MEDIA_URL}}{{ dato1.imagen }}' alt="cupon"  width="700" height="1000"  /></a>
+                    <p>{{ dato1.descripcion }} </p>
                 {% endif %}
               </div>  
-              </div>  
+
             {% endif %}
-        {% endfor %}
+        {% endfor %} 
+
+        </div>
 {% show_more %}
+    
