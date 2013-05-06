@@ -837,8 +837,7 @@ input[type="text"], select, textarea {
 }
 
 .pin-cupon img {
-	width: 600%;
-	height: 600%;
+	width: 100%;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 15px;
 	margin-bottom: 5px;
