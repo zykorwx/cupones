@@ -872,3 +872,17 @@ input[type="text"], select, textarea {
 #columns-cupons:hover .pin-cupon:not(:hover) {
 	opacity: 0.4;
 }
+
+#encabezado{
+margin-top: 0px;
+margin-bottom: 5px;
+}
+
+#encabezado-0{
+margin-top: -5px;
+margin-bottom: 0px;
+}
+
+#countdown_dashboard{
+		margin:0 auto 0 auto; width:65%;
+}

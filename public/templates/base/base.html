@@ -30,16 +30,39 @@
 		<div id="preloader">
 			<div id="status">&nbsp;</div>
 		</div>
-		<div class="navbar navbar-fixed-top" id="navigation">
-			{% block encabezado %} {% endblock %}
-			<div class="navbar-inner">
+		<div class="navbar navbar-fixed-top" id="navigation encabezado">
+	{% block encabezado %}
+		 <div class="span3">
+		 	<a name="iniciaSesion"></a>
+		    {% if user.is_authenticated %}
+		        <h3 class="text-info" id="encabezado"><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> {{ user.username }} <a id="btn-encabezado" class="btn btn-mini" href="/cerrar" title="Cerrar">Cerrar sesion</a> </h3>
+		    {% else %}
+		        <h3 class="text-info" id="encabezado">Inicia sesion
+		            {% load url from future %}
+		            <div class="row-fluid">
+		                <div class="span3">
+		                    <a id="link-face" class="btn btn-large btn-info" href="{% url 'socialauth_begin' 'facebook' %}" title="Conectar usando Facebook">
+		                        <i class="icon-facebook-sign"> </i>
+		                    </a>
+		                </div>
+		                <div class="span3">
+		                    <a id="link-twitter" class="btn btn-large btn-info"  href="{% url 'socialauth_begin' 'twitter' %}" title="Conectar usando Twitter">
+		                        <i class="icon-twitter-sign"> </i>
+		                    </a>
+		                </div>
+		            </div>
+		        </h3>
+		    {% endif %}
+		    </div>
+	{% endblock %}
+			<div class="navbar-inner" id="encabezado-0">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="/" class="brand"><img src='{{STATIC_URL}}img/logo.png' alt=""></a>
+					<a id="encabezado" href="/" class="brand"><img src='{{STATIC_URL}}img/logo.png' alt=""></a>
 					<div class="nav-collapse collapse">
 						<ul class="nav pull-right">
 							<li><a href="/">Click Total</a></li>
@@ -52,10 +75,12 @@
 		</div>
 		<section id="services-top">
 			<section id="services-top-desktop" class="visible-desktop" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+				<br>
 				<h1 class="header">Click Total</h1>
 				<p class="header">Las mejores empresas con los mejores descuentos</p>
 			</section>
 			<section id="services-top-mobile" class="hidden-desktop">
+				<br>
 				<h1 class="header">Click Total</h1>
 				<p class="header">Las mejores empresas con los mejores</p>
 			</section>

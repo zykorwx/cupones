@@ -8,42 +8,17 @@
 <link rel="Stylesheet" type="text/css" href='{{STATIC_URL}}css/main.css'></link>
 {% endblock %}
 
-{% block encabezado %}
-<a name="iniciaSesion"></a>
- <div class="span3 ">
-    {% if user.is_authenticated %}
-        <h3 class="text-info" ><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> {{ user.username }} <a class="btn btn-mini" href="/cerrar" title="Cerrar">Cerrar sesion</a> </h3>
-    {% else %}
-        <h3 class="text-info">Inicia sesion
-            {% load url from future %}
-            <div class="row-fluid">
-                <div class="span3">
-                    <a id="link-face" class="btn btn-large btn-info" href="{% url 'socialauth_begin' 'facebook' %}" title="Conectar usando Facebook">
-                        <i class="icon-facebook-sign"> </i>
-                    </a>
-                </div>
-                <div class="span3">
-                    <a id="link-twitter" class="btn btn-large btn-info"  href="{% url 'socialauth_begin' 'twitter' %}" title="Conectar usando Twitter">
-                        <i class="icon-twitter-sign"> </i>
-                    </a>
-                </div>
-            </div>
 
-
-
-        </h3>
-        
-
-    {% endif %}
-    </div>
-{% endblock %}
 
 {% block lateral %} 
 <div class="row-fluid show-grid">
-    <div class="span5">
-        <h3>Si ya cuentas con un cupon nuestro ¡canjealo ahora!  
-        <a class="btn btn-primary" href="/cupon/canjear_cupon" >Canjea tu cupon</a>
-        </h3>
+    <a name="Canjear"></a>
+    <div class="span8 offset2 text-center">
+        <h2 align="center">Si ya cuentas con un cupon nuestro ¡canjealo ahora!  
+        </h2>
+        <center> 
+        <a class="btn btn-large btn-primary text-center" href="/cupon/canjear_cupon" >Canjea tu cupon</a>
+        </center>
     </div>
    
 </div>
@@ -51,10 +26,10 @@
 {% endblock %}
 
 {% block blog %}
-<div class="offset1">
-    <h3 align="justify">Esperanos faltan pocos dias para el lanzamiento. </h3>
+<div class="offset1 text-center">
+        <h3 align="center">Faltan: </h3>
             <!-- Countdown dashboard start -->
-        <div id="countdown_dashboard">
+        <div class="row" id="countdown_dashboard">
             <div class="dash weeks_dash">
                 <span class="dash_title">Semana</span>
                 <div class="digit">0</div>
@@ -86,14 +61,16 @@
             </div>
 
         </div>
-
-        <!-- Countdown dashboard end -->    
+        <!-- Countdown dashboard end -->  
+    <div class="row">
+        <h3 align="center">Quedan pocos días para aprovechar el 90% de descuento en tu inscripción y lograr que más personas te conozcan para mayor información da click.</h3>
+        <center> 
+            <a class="btn btn-large btn-primary" href="/empresas" >aquí</a>
+        </center> 
+  </div>
     </div>
-    <div class="span3">
-    <h3 >Te interesa anunciarte has click <a class="btn btn-primary" href="/empresas" >aquí</a></h3>
-    </div>
+       <hr> 
  {% endblock %}
-         <hr/>
 {% block contenido %}
 
 
