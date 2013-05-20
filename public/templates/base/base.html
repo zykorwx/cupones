@@ -35,7 +35,7 @@
 		 <div class="span3">
 		 	<a name="iniciaSesion"></a>
 		    {% if user.is_authenticated %}
-		        <h3 class="text-info" id="encabezado"><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> {{ user.username }} <a id="btn-encabezado" class="btn btn-mini" href="/cerrar" title="Cerrar">Cerrar sesion</a> </h3>
+		        <h3 class="text-info" id="encabezado"><img class="img-polaroid" src='{{MEDIA_URL}}{{user.perfil.avatar}}' alt="Avatar" /> <a href="/miscupones">{{ user.username }}</a> <a id="btn-encabezado" class="btn btn-mini" href="/cerrar" title="Cerrar">Cerrar sesion</a> </h3>
 		    {% else %}
 		        <h3 class="text-info" id="encabezado">Inicia sesion
 		            {% load url from future %}

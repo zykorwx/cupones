@@ -27,3 +27,7 @@ def pago_Empresa(request, empresa_id):
 	else:
 		formulario = PagoEmpresaForm()
 	return render_to_response('empresas/pagoEmpresa.html', {'formulario':formulario, 'empresa': empresa, 'COSTO_INSCRIPCION': COSTO_INSCRIPCION }, context_instance=RequestContext(request))
+
+
+def pago_gracias(request):
+	return render_to_response('empresas/pagoGracias.html', context_instance=RequestContext(request))

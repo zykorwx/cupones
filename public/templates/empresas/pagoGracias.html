@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Muchas gracias por tu pago" %} {% endblock %}
+
+{% block contenido %}
+		<div class="row-fluid text-center">
+			<h2>Gracias por su pago. Su transacción ha finalizado y le hemos enviado un recibo de su compra por correo electrónico. Puede acceder a su cuenta,<a class="btn btn-primary btn-large" href="http://www.paypal.com/mx" target="_blank"> Paypal</a>, para ver los detalles de esta transacción.</h2>
+			<a class="btn btn-primary btn-large" href="/"> Regresar</a>
+		</div>
+
+{% endblock %}

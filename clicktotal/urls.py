@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 # Administrador
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^viewor/', include(admin.site.urls)),
 #Url creada para decirle al sistema donde buscar los archivos subidos
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
     {'document_root': settings.MEDIA_ROOT, }
@@ -18,10 +18,12 @@ urlpatterns = patterns('',
 	url(r'^$', 'clicktotal.views.index'),
 # Urls Usuario
     url(r'^cerrar/$', 'usuario.views.cerrar'),
+    url(r'^miscupones/$', 'usuario.views.mis_cupones'),
 # Urls Empresa
     url(r'^empresas$', 'empresa.views.indexEmpresa'), # agregar nueva empresa
     url(r'^empresa/nueva$', 'empresa.views.nueva_empresa'), # agregar nueva empresa
-    url(r'^empresa/pagos/(?P<empresa_id>\d+)$', 'empresa.views.pago_Empresa'), # agregar nueva empresa
+    url(r'^empresa/pagos/(?P<empresa_id>\d+)$', 'empresa.views.pago_Empresa'), # Pagos empresa
+    url(r'^pagos/gracias', 'empresa.views.pago_gracias'), # Flinalizar pago
     url(r'^empresa/login$', 'empresa.views.login_empresa'), # Login empresa
     url(r'^empresa/admin$', 'empresa.views.login_empresa'), # Admin de la empresa
     url(r'^empresa/admin/(?P<empresa>\d+)$', 'empresa.views.admin_empresa'), # Admin de la empresa

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block tittle %} {% trans "Mis cupones" %} {% endblock %}
+
+
+{% block contenido %}
+
+<div class="row-fluid">
+	<div class="span9 text-center">
+		<h2 class="text-info">{% trans "Tus cupones" %} {{ user.username }}</h2>
+		<p>Escriba los datos de login  de la empresa, disfruta la pagina para administrar tus promociones.</p>
+
+<table id="tabla-1" class="table table-striped">
+  <tr>
+    <th scope="col"><span class="special">Cupon</span></th>
+    <th scope="col"><span class="special">Fecha de creacion</span></th>
+    <th scope="col"><span class="special">Imagen</span></th>
+    <th scope="col"><span class="special">Descripcion de la promocion</span></th>
+    <th scope="col"><span class="special">Estatus</span></th>
+  </tr>
+  {% for cupon in cupones  %}
+      <tr>
+        <td>{{ cupon.num_cupon }} </td>
+        <td>{{cupon.fecha_creacion}}</td>
+       	{% if cupon.id_promocion.estado == "1" %}
+        	<td><a href='/cupon/nuevo/{{cupon.id_promocion.id}}'><img src='{{MEDIA_URL}}{{ cupon.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></a></td>
+        	<td>{{cupon.id_promocion.descripcion}}</td>
+        	<td class="text-success">{% trans "Disponible" %}</td> 
+        {% else %}
+            <td><img src='{{MEDIA_URL}}{{ cupon.id_promocion.imagen }}' width="150" height="100" alt="promocion" /></td>
+        	<td>{{cupon.id_promocion.descripcion}}</td>
+        	<td class="text-error">{% trans "No disponible" %}</td> 
+        {% endif %}  
+      </tr>
+  {% endfor %}
+
+</table>
+
+	</div>  
+</div>
+
+{% endblock %}
